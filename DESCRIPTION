@@ -1,0 +1,14 @@
+Package: RDota2
+Type: Package
+Title: An R Web API Client for Valve's Dota2
+Version: 0.1.0
+Authors@R: person("Theo", 
+                  "Boutaris", 
+                  email = "teoboot2007@hotmail.com", 
+                  role = c("aut", "cre", "cph"))
+Depends: R (>= 3.2.0)
+Imports: httr,
+         jsonlite
+Description: This is an R Web Api Client for Valve's Dota2, which can be easily used to download Dota2's data. 
+License: MIT + file LICENSE
+LazyData: TRUE
