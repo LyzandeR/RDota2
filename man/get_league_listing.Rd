@@ -22,7 +22,7 @@ user needs to work with multiple keys.}
 A dota_api object containing the elements described in the details.
 }
 \description{
-\code{add_css_caption} will return a data.frame with information about DotaTV-supported leagues.
+Information about DotaTV-supported leagues.
 }
 \details{
 A list will be returned that contains three elements. The content, the url and the response
@@ -40,6 +40,7 @@ information about the DotaTV-supported leagues. It consists of the five followin
 }
 \examples{
 \dontrun{
+get_league_listing()
 get_league_listing(language = 'en', key = NULL)
 get_league_listing(language = 'en', key = 'xxxxxxxxxxx')
 }

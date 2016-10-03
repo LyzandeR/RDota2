@@ -5,7 +5,7 @@
 # Set key to environment
 set_key <- function(value) {
  .RdotaEnv$key <- value
- message('Key set successfully')
+ if (!is.null(value) | nzchar(value)) message('Key set successfully')
  invisible(value)
 }
 

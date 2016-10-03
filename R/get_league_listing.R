@@ -1,6 +1,6 @@
 #' Information about DotaTV-supported leagues
 #'
-#' \code{add_css_caption} will return a data.frame with information about DotaTV-supported leagues.
+#' Information about DotaTV-supported leagues.
 #'
 #' A list will be returned that contains three elements. The content, the url and the response
 #' received from the api.
@@ -30,6 +30,7 @@
 #'
 #' @examples
 #' \dontrun{
+#' get_league_listing()
 #' get_league_listing(language = 'en', key = NULL)
 #' get_league_listing(language = 'en', key = 'xxxxxxxxxxx')
 #' }
@@ -51,18 +52,18 @@ get_league_listing <- function(language = 'en', key = NULL) {
  }
 
  #set a user agent
- ua <- user_agent("http://github.com/lyzander/RDota2")
+ ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
- resp <- GET('http://api.steampowered.com/IDOTA2Match_570/GetLeagueListing/v1/',
-             query = list(key = key, language = language), ua)
+ resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetLeagueListing/v1/',
+                   query = list(key = key, language = language), ua)
 
  #get url
  url <- strsplit(resp$url, '\\?')[[1]][1]
 
  #check for code status. Any http errors will be converted to something meaningful.
- stop_for_status(resp)
+ httr::stop_for_status(resp)
 
- if (http_type(resp) != "application/json") {
+ if (httr::http_type(resp) != "application/json") {
   stop("API did not return json", call. = FALSE)
  }
 
