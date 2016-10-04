@@ -43,7 +43,7 @@ get_league_listing <- function(language = 'en', key = NULL) {
   key <- get_key()
 
   #if key is blank space then stop i.e. environment variable has not be set.
-  if (!nzchar(key) | is.null(key)) {
+  if (is.null(key) || !nzchar(key)) {
    stop(strwrap('The function cannot find an API key. Please register a key by using
                 the RDota2::register_key function. If you do not have a key you can
                 obtain one by visiting https://steamcommunity.com/dev.',
@@ -54,8 +54,10 @@ get_league_listing <- function(language = 'en', key = NULL) {
  #set a user agent
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
+ #fetching response
  resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetLeagueListing/v1/',
-                   query = list(key = key, language = language), ua)
+                   query = list(key = key, language = language),
+                   ua)
 
  #get url
  url <- strsplit(resp$url, '\\?')[[1]][1]
@@ -68,7 +70,7 @@ get_league_listing <- function(language = 'en', key = NULL) {
  }
 
  #parse response
- parsed <- jsonlite::fromJSON(content(resp, "text"), simplifyVector = FALSE)
+ parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
  #convert to a data.frame
  df <- do.call(rbind.data.frame, c(parsed[[1]][[1]], stringsAsFactors = FALSE))
 

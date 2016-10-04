@@ -6,7 +6,8 @@
 #' games), the url and the response received from the api.
 #'
 #' The content element of the list contains information about the live league games.
-#' Each element of the content list is a game. Every game consists of the following sections:
+#' Each element of the content list is a game. Each game consists of the following sections
+#' (list elements):
 #'
 #' \itemize{
 #'   \item \strong{players:} A list of lists containing information about the players.
@@ -57,7 +58,7 @@ get_live_league_games <- function(language = 'en', key = NULL) {
   key <- get_key()
 
   #if key is blank space then stop i.e. environment variable has not be set.
-  if (!nzchar(key) | is.null(key)) {
+  if (is.null(key) || !nzchar(key)) {
    stop(strwrap('The function cannot find an API key. Please register a key by using
                 the RDota2::register_key function. If you do not have a key you can
                 obtain one by visiting https://steamcommunity.com/dev.',
@@ -68,21 +69,23 @@ get_live_league_games <- function(language = 'en', key = NULL) {
  #set a user agent
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
+ #fetching response
  resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/',
-                   query = list(key = key, language = language), ua)
+                   query = list(key = key, language = language),
+                   ua)
 
  #get url
  url <- strsplit(resp$url, '\\?')[[1]][1]
 
  #check for code status. Any http errors will be converted to something meaningful.
- stop_for_status(resp)
+ httr::stop_for_status(resp)
 
- if (http_type(resp) != "application/json") {
+ if (httr::http_type(resp) != "application/json") {
   stop("API did not return json", call. = FALSE)
  }
 
  #parse response - each element in games is a game(!)
- games <- jsonlite::fromJSON(content(resp, "text"), simplifyVector = FALSE)[[1]][[1]]
+ games <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]][[1]]
 
  #output
  structure(
