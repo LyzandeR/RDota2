@@ -2,12 +2,11 @@
 #'
 #' Player information about a specific match ID.
 #'
-#' A list will be returned that contains three elements. The content,
+#' A list will be returned that contains four elements. The content_player, the content_game,
 #' the url and the response received from the api.
 #'
-#' The content element of the list contains information about the match.
-#' Each element of the content list is a player. The following information about each player will
-#' be returned:
+#' The content_player element is a list that contains information about the players participating in
+#' a match. The information included (as elements of the list):
 #'
 #' \itemize{
 #'   \item \strong{account_id:} The player's account id.
@@ -39,6 +38,33 @@
 #'   \item \strong{scaled_tower_damage:} Undocumented.
 #'   \item \strong{scaled_hero_healing:} Undocumented.
 #'   \item \strong{ability_upgrades:} A list of all abilities in order of upgrade.
+#' }
+#'
+#' The content_game element is a list that contains information about the match. The information
+#' included included (as elements of the list):
+#'
+#' \itemize{
+#'   \item \strong{radiant_win:} Boolean. Whether radiant won or not.
+#'   \item \strong{duration:} The duration of a game in seconds.
+#'   \item \strong{pre_game_duration:} The pre game duration.
+#'   \item \strong{start_time:} Unix Timestamp of when the game began.
+#'   \item \strong{match_id:} The match's unique id.
+#'   \item \strong{match_seq_num:} A sequence number. It represents the order matches were recorded.
+#'   \item \strong{tower_status_radiant:} Tower Status. Check
+#'     /url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
+#'   \item \strong{barracks_status_dire:} Same as above.
+#'   \item \strong{cluster:} The server cluster (used for downloading replays).
+#'   \item \strong{first_blood_time:} Time in seconds when the first blood occured.
+#'   \item \strong{lobby_type:} Type of lobby.
+#'   \item \strong{human_players:} Number of human players.
+#'   \item \strong{leagueid:} The league id.
+#'   \item \strong{positive_votes:} Number of positive votes.
+#'   \item \strong{negative_votes:} Number of negative votes.
+#'   \item \strong{game_mode:} Game mode.
+#'   \item \strong{flags:} Undocumented.
+#'   \item \strong{engine:} 0 - source1, 1 - source 2.
+#'   \item \strong{radiant_score:} Undocumented.
+#'   \item \strong{dire_score:} Undocumented.
 #' }
 #'
 #' @param match_id The match ID you want to get information about. Can be either numeric or
@@ -99,12 +125,13 @@ get_match_details <- function(match_id, language = 'en', key = NULL) {
  }
 
  #parse response - each element in players is a player(!)
- players <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]][[1]]
+ parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
 
  #output
  structure(
   list(
-   content = players,
+   content_players = parsed[[1]][[1]],
+   content_game = parsed[[1]][-1],
    url = url,
    response = resp
   ),
