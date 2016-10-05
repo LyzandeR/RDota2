@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_live_league_games.R
 \name{get_live_league_games}
 \alias{get_live_league_games}
-\title{Information about DotaTV-supported leagues}
+\title{Information about Live League Matches}
 \usage{
 get_live_league_games(language = "en", key = NULL)
 }

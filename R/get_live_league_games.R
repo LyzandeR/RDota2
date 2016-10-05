@@ -1,4 +1,4 @@
-#' Information about DotaTV-supported leagues
+#' Information about Live League Matches
 #'
 #' In-game League Matches and Information about them.
 #'

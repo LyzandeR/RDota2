@@ -6,13 +6,11 @@ Authors@R: person("Theo",
                   "Boutaris", 
                   email = "teoboot2007@hotmail.com", 
                   role = c("aut", "cre", "cph"))
-Depends:
-    R (>= 3.2.0)
-Imports:
-    httr,
-    jsonlite
+Depends: R (>= 3.2.0)
+Imports: httr,
+         jsonlite
 Description: This is an R Web Api Client for Valve's Dota2, which can be easily
-    used to download Dota2's data.
+             used to download Dota2's data.
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
