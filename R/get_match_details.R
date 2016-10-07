@@ -138,6 +138,6 @@ get_match_details <- function(match_id, language = 'en', key = NULL) {
   class = "dota_api"
  )
 
- }
+}
 
 

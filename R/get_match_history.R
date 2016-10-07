@@ -176,6 +176,6 @@ get_match_history <- function(hero_id = NULL,
   class = "dota_api"
  )
 
- }
+}
 
 
