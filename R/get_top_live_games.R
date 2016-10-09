@@ -1,19 +1,37 @@
-#' Information about DotaTV-supported leagues
+#' Top Live Games
 #'
-#' Information about DotaTV-supported leagues.
+#' Returns the top live games by MMR.
 #'
 #' A list will be returned that contains three elements. The content, the url and the response
 #' received from the api.
 #'
-#' The content is probably the most useful part for the user since it is a data.frame containing the
-#' information about the DotaTV-supported leagues. It consists of the five following columns:
+#' The content element of the list contains a games_list list which contains
+#' information about the top live games. The following information is provided for each game
+#' (Categories are not documented at the time of writting - please check
+#' \url{https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame}):
+#'
 #' \itemize{
-#'   \item \strong{leagues:} The leagues supported in-game via DotaTV.
-#'   \item \strong{name:} The league name.
-#'   \item \strong{leagueid:} The ID of the league (unique).
-#'   \item \strong{description:} A description containing information about the league.
-#'   \item \strong{tournament_url:} The website of the link.
+#'   \item \strong{activate_time}
+#'   \item \strong{deactivate_time}
+#'   \item \strong{server_steam_id}
+#'   \item \strong{lobby_id}
+#'   \item \strong{league_id}
+#'   \item \strong{lobby_type}
+#'   \item \strong{game_time}
+#'   \item \strong{delay}
+#'   \item \strong{spectators}
+#'   \item \strong{game_mode}
+#'   \item \strong{average_mmr}
+#'   \item \strong{sort_score}
+#'   \item \strong{last_update_time}
+#'   \item \strong{radiant_lead}
+#'   \item \strong{radiant_score}
+#'   \item \strong{dire_score}
+#'   \item \strong{players}
 #' }
+#'
+#' @param partner The documentation does not specify what this parameter should be but it seems
+#' like numbers from 1-3 return results of live games.
 #'
 #' @param key The api key obtained from Steam. If you don't have one please visit
 #' \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
@@ -30,13 +48,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_league_listing()
-#' get_league_listing(language = 'en', key = NULL)
-#' get_league_listing(language = 'en', key = 'xxxxxxxxxxx')
+#' get_top_live_game(patner = 1)
+#' get_top_live_game(patner = 1, language = 'en', key = NULL)
+#' get_top_live_game(patner = 2, language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
 #' @export
-get_league_listing <- function(language = 'en', key = NULL) {
+get_top_live_game <- function(partner = 1,
+                              language = 'en',
+                              key = NULL) {
 
  #if key is null look in the environment variables
  if (is.null(key)) {
@@ -55,8 +75,10 @@ get_league_listing <- function(language = 'en', key = NULL) {
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
  #fetching response
- resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetLeagueListing/v1/',
-                   query = list(key = key, language = language),
+ resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetTopLiveGame/v1/',
+                   query = list(partner = partner,
+                                key = key,
+                                language = language),
                    ua)
 
  #get url
@@ -69,26 +91,19 @@ get_league_listing <- function(language = 'en', key = NULL) {
   stop("API did not return json", call. = FALSE)
  }
 
- #parse response
- parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
- #convert to a data.frame
- df <- do.call(rbind.data.frame, c(parsed[[1]][[1]], stringsAsFactors = FALSE))
+ #parse response - each element in games is a game(!)
+ games <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
 
  #output
  structure(
   list(
-   content = df,
+   content = games,
    url = url,
    response = resp
   ),
   class = "dota_api"
  )
 
-}
+ }
 
-#print method for dota_api
-print.dota_api <- function(x, ...) {
- cat("<RDota2 ", x$url, ">\n\n", sep = "")
- x$content
- invisible(x)
-}
+

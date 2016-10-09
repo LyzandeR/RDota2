@@ -1,19 +1,21 @@
-#' Information about DotaTV-supported leagues
+#' Tournament Player Stats
 #'
-#' Information about DotaTV-supported leagues.
+#' Tournament Player Stats.
 #'
 #' A list will be returned that contains three elements. The content, the url and the response
 #' received from the api.
 #'
-#' The content is probably the most useful part for the user since it is a data.frame containing the
-#' information about the DotaTV-supported leagues. It consists of the five following columns:
-#' \itemize{
-#'   \item \strong{leagues:} The leagues supported in-game via DotaTV.
-#'   \item \strong{name:} The league name.
-#'   \item \strong{leagueid:} The ID of the league (unique).
-#'   \item \strong{description:} A description containing information about the league.
-#'   \item \strong{tournament_url:} The website of the link.
-#' }
+#' The content element of the list contains information about the matches the player played and
+#' information about global stats.
+#'
+#' @param account_id Player's account id.
+#'
+#' @param league_id (optional) The league id. Only the International is supported.
+#'
+#' @param hero_id (optional) A hero id.
+#'
+#' @param time_frame (optional) Only return stats between this time frame (The parameter format
+#' is not yet known i.e. it is not in use just yet).
 #'
 #' @param key The api key obtained from Steam. If you don't have one please visit
 #' \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
@@ -30,13 +32,19 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_league_listing()
-#' get_league_listing(language = 'en', key = NULL)
-#' get_league_listing(language = 'en', key = 'xxxxxxxxxxx')
+#' get_tournament_player_stats()
+#' get_tournament_player_stats(teams_requested = 10)
+#' get_tournament_player_stats(language = 'en', key = NULL)
+#' get_tournament_player_stats(language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
 #' @export
-get_league_listing <- function(language = 'en', key = NULL) {
+get_tournament_player_stats <- function(account_id = NULL,
+                                        league_id = NULL,
+                                        hero_id = NULL,
+                                        time_frame = NULL,
+                                        language = 'en',
+                                        key = NULL) {
 
  #if key is null look in the environment variables
  if (is.null(key)) {
@@ -55,8 +63,13 @@ get_league_listing <- function(language = 'en', key = NULL) {
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
  #fetching response
- resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetLeagueListing/v1/',
-                   query = list(key = key, language = language),
+ resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetTournamentPlayerStats/v2/',
+                   query = list(account_id = account_id,
+                                league_id = league_id,
+                                hero_id = hero_id,
+                                time_frame = time_frame,
+                                key = key,
+                                language = language),
                    ua)
 
  #get url
@@ -69,15 +82,13 @@ get_league_listing <- function(language = 'en', key = NULL) {
   stop("API did not return json", call. = FALSE)
  }
 
- #parse response
- parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
- #convert to a data.frame
- df <- do.call(rbind.data.frame, c(parsed[[1]][[1]], stringsAsFactors = FALSE))
+ #parse response - each element in games is a game(!)
+ player <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
 
  #output
  structure(
   list(
-   content = df,
+   content = player,
    url = url,
    response = resp
   ),
@@ -86,9 +97,4 @@ get_league_listing <- function(language = 'en', key = NULL) {
 
 }
 
-#print method for dota_api
-print.dota_api <- function(x, ...) {
- cat("<RDota2 ", x$url, ">\n\n", sep = "")
- x$content
- invisible(x)
-}
+

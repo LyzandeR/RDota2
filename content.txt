@@ -1,0 +1,548 @@
+List of 3
+ $ content :List of 1
+  ..$ game_list:List of 10
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476048512
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104189338690567"
+  .. .. ..$ lobby_id        : chr "24762578334937537"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 752
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 89
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 6218
+  .. .. ..$ sort_score      : int 6807
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int -315
+  .. .. ..$ radiant_score   : int 6
+  .. .. ..$ dire_score      : int 8
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 141833801
+  .. .. .. .. ..$ hero_id   : int 88
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 167372590
+  .. .. .. .. ..$ hero_id   : int 76
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 172028521
+  .. .. .. .. ..$ hero_id   : int 90
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 147534046
+  .. .. .. .. ..$ hero_id   : int 84
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 105341849
+  .. .. .. .. ..$ hero_id   : int 6
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 218438427
+  .. .. .. .. ..$ hero_id   : int 34
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 110539311
+  .. .. .. .. ..$ hero_id   : int 28
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 174340470
+  .. .. .. .. ..$ hero_id   : int 7
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 137323908
+  .. .. .. .. ..$ hero_id   : int 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 315826524
+  .. .. .. .. ..$ hero_id   : int 9
+  .. .. ..$ building_state  : int 5308490
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476048768
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104186552497159"
+  .. .. ..$ lobby_id        : chr "24762578336100241"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 451
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 6
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5999
+  .. .. ..$ sort_score      : int 6505
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int -1318
+  .. .. ..$ radiant_score   : int 3
+  .. .. ..$ dire_score      : int 4
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 125861458
+  .. .. .. .. ..$ hero_id   : int 104
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 284370402
+  .. .. .. .. ..$ hero_id   : int 26
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 210717878
+  .. .. .. .. ..$ hero_id   : int 18
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 140222693
+  .. .. .. .. ..$ hero_id   : int 96
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 93258228
+  .. .. .. .. ..$ hero_id   : int 88
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 221916029
+  .. .. .. .. ..$ hero_id   : int 70
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 144412843
+  .. .. .. .. ..$ hero_id   : int 28
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 177434193
+  .. .. .. .. ..$ hero_id   : int 84
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 133821841
+  .. .. .. .. ..$ hero_id   : int 2
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 192076135
+  .. .. .. .. ..$ hero_id   : int 17
+  .. .. ..$ building_state  : int 4784201
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476048384
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104190629528585"
+  .. .. ..$ lobby_id        : chr "24762578334034350"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 959
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 15
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5765
+  .. .. ..$ sort_score      : int 6280
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int -3003
+  .. .. ..$ radiant_score   : int 12
+  .. .. ..$ dire_score      : int 13
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 120916045
+  .. .. .. .. ..$ hero_id   : int 55
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 253355185
+  .. .. .. .. ..$ hero_id   : int 68
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 147534374
+  .. .. .. .. ..$ hero_id   : int 67
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 287924604
+  .. .. .. .. ..$ hero_id   : int 14
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 196561120
+  .. .. .. .. ..$ hero_id   : int 17
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 332094634
+  .. .. .. .. ..$ hero_id   : int 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 182439266
+  .. .. .. .. ..$ hero_id   : int 34
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 298259402
+  .. .. .. .. ..$ hero_id   : int 84
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 139979864
+  .. .. .. .. ..$ hero_id   : int 32
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 144898099
+  .. .. .. .. ..$ hero_id   : int 2
+  .. .. ..$ building_state  : int 4784202
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476047744
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104190648005634"
+  .. .. ..$ lobby_id        : chr "24762578330467601"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 1481
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 18
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5543
+  .. .. ..$ sort_score      : int 6061
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int 8407
+  .. .. ..$ radiant_score   : int 30
+  .. .. ..$ dire_score      : int 20
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 338905633
+  .. .. .. .. ..$ hero_id   : int 99
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 308737561
+  .. .. .. .. ..$ hero_id   : int 88
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 92855627
+  .. .. .. .. ..$ hero_id   : int 76
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 136994852
+  .. .. .. .. ..$ hero_id   : int 14
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 148287464
+  .. .. .. .. ..$ hero_id   : int 32
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 129858884
+  .. .. .. .. ..$ hero_id   : int 20
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 198568959
+  .. .. .. .. ..$ hero_id   : int 2
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 194792515
+  .. .. .. .. ..$ hero_id   : int 9
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 143576629
+  .. .. .. .. ..$ hero_id   : int 17
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 207009740
+  .. .. .. .. ..$ hero_id   : int 41
+  .. .. ..$ building_state  : int 13762634
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476048000
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104187902072840"
+  .. .. ..$ lobby_id        : chr "24762578331673530"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 1218
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 3
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5478
+  .. .. ..$ sort_score      : int 5981
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int -3337
+  .. .. ..$ radiant_score   : int 10
+  .. .. ..$ dire_score      : int 18
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 178367582
+  .. .. .. .. ..$ hero_id   : int 23
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 148185527
+  .. .. .. .. ..$ hero_id   : int 11
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 127082755
+  .. .. .. .. ..$ hero_id   : int 88
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 136606619
+  .. .. .. .. ..$ hero_id   : int 7
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 104652351
+  .. .. .. .. ..$ hero_id   : int 41
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 235428042
+  .. .. .. .. ..$ hero_id   : int 32
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 229897725
+  .. .. .. .. ..$ hero_id   : int 14
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 129788792
+  .. .. .. .. ..$ hero_id   : int 86
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 255741704
+  .. .. .. .. ..$ hero_id   : int 8
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 67840348
+  .. .. .. .. ..$ hero_id   : int 76
+  .. .. ..$ building_state  : int 9568401
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476049024
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104185052068873"
+  .. .. ..$ lobby_id        : chr "24762578337440993"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 289
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 0
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5346
+  .. .. ..$ sort_score      : int 5846
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int 1730
+  .. .. ..$ radiant_score   : int 3
+  .. .. ..$ dire_score      : int 0
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 140724748
+  .. .. .. .. ..$ hero_id   : int 62
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 127137085
+  .. .. .. .. ..$ hero_id   : int 76
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 213196325
+  .. .. .. .. ..$ hero_id   : int 79
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 101723698
+  .. .. .. .. ..$ hero_id   : int 21
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 139589868
+  .. .. .. .. ..$ hero_id   : int 1
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 151690131
+  .. .. .. .. ..$ hero_id   : int 50
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 128199153
+  .. .. .. .. ..$ hero_id   : int 41
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 326938314
+  .. .. .. .. ..$ hero_id   : int 17
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 291225828
+  .. .. .. .. ..$ hero_id   : int 88
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 5422
+  .. .. .. .. ..$ hero_id   : int 6
+  .. .. ..$ building_state  : int 4784201
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476048768
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104190180415496"
+  .. .. ..$ lobby_id        : chr "24762578335965573"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 631
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 1
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5320
+  .. .. ..$ sort_score      : int 5821
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int 837
+  .. .. ..$ radiant_score   : int 10
+  .. .. ..$ dire_score      : int 6
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 213492927
+  .. .. .. .. ..$ hero_id   : int 112
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 158401119
+  .. .. .. .. ..$ hero_id   : int 48
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 124761394
+  .. .. .. .. ..$ hero_id   : int 14
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 137113083
+  .. .. .. .. ..$ hero_id   : int 113
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 129903593
+  .. .. .. .. ..$ hero_id   : int 79
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 197379436
+  .. .. .. .. ..$ hero_id   : int 6
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 211280563
+  .. .. .. .. ..$ hero_id   : int 90
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 122796142
+  .. .. .. .. ..$ hero_id   : int 88
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 212416682
+  .. .. .. .. ..$ hero_id   : int 76
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 169309204
+  .. .. .. .. ..$ hero_id   : int 4
+  .. .. ..$ building_state  : int 4849737
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476049280
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104190037449728"
+  .. .. ..$ lobby_id        : chr "24762578339341839"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int -69
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 0
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5094
+  .. .. ..$ sort_score      : int 5594
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int 40
+  .. .. ..$ radiant_score   : int 0
+  .. .. ..$ dire_score      : int 0
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 128208084
+  .. .. .. .. ..$ hero_id   : int 20
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 184554777
+  .. .. .. .. ..$ hero_id   : int 11
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 328833600
+  .. .. .. .. ..$ hero_id   : int 59
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 143159706
+  .. .. .. .. ..$ hero_id   : int 108
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 139154835
+  .. .. .. .. ..$ hero_id   : int 37
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 109699679
+  .. .. .. .. ..$ hero_id   : int 21
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 206930906
+  .. .. .. .. ..$ hero_id   : int 23
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 368538844
+  .. .. .. .. ..$ hero_id   : int 2
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 330213019
+  .. .. .. .. ..$ hero_id   : int 76
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 107903772
+  .. .. .. .. ..$ hero_id   : int 70
+  .. .. ..$ building_state  : int 4784201
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476049152
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104190390865929"
+  .. .. ..$ lobby_id        : chr "24762578338535189"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 132
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 1
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5080
+  .. .. ..$ sort_score      : int 5581
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int -486
+  .. .. ..$ radiant_score   : int 0
+  .. .. ..$ dire_score      : int 1
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 292838941
+  .. .. .. .. ..$ hero_id   : int 72
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 243208839
+  .. .. .. .. ..$ hero_id   : int 30
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 151006688
+  .. .. .. .. ..$ hero_id   : int 28
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 134542344
+  .. .. .. .. ..$ hero_id   : int 82
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 138070169
+  .. .. .. .. ..$ hero_id   : int 35
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 261162736
+  .. .. .. .. ..$ hero_id   : int 74
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 138105345
+  .. .. .. .. ..$ hero_id   : int 88
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 373223155
+  .. .. .. .. ..$ hero_id   : int 9
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 351051649
+  .. .. .. .. ..$ hero_id   : int 8
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 349256030
+  .. .. .. .. ..$ hero_id   : int 16
+  .. .. ..$ building_state  : int 4784201
+  .. ..$ :List of 18
+  .. .. ..$ activate_time   : int 1476049408
+  .. .. ..$ deactivate_time : int 0
+  .. .. ..$ server_steam_id : chr "90104187786252294"
+  .. .. ..$ lobby_id        : chr "24762578339759471"
+  .. .. ..$ league_id       : int 0
+  .. .. ..$ lobby_type      : int 7
+  .. .. ..$ game_time       : int 60
+  .. .. ..$ delay           : int 120
+  .. .. ..$ spectators      : int 0
+  .. .. ..$ game_mode       : int 3
+  .. .. ..$ average_mmr     : int 5032
+  .. .. ..$ sort_score      : int 5532
+  .. .. ..$ last_update_time: int 1476049536
+  .. .. ..$ radiant_lead    : int 0
+  .. .. ..$ radiant_score   : int 0
+  .. .. ..$ dire_score      : int 0
+  .. .. ..$ players         :List of 10
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 333820822
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 235842285
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 315429324
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 302716331
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 166716347
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 152243392
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 182224757
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 86785487
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 285471174
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. .. ..$ :List of 2
+  .. .. .. .. ..$ account_id: int 192304714
+  .. .. .. .. ..$ hero_id   : int 0
+  .. .. ..$ building_state  : int 4784201
+ $ url     : chr "http://api.steampowered.com/IDOTA2Match_570/GetTopLiveGame/v1/"
+ $ response:List of 10
+  ..$ url        : chr "http://api.steampowered.com/IDOTA2Match_570/GetTopLiveGame/v1/?partner=1&key=DA334DF185E0EF603B6462425245A5AF&language=en"
+  ..$ status_code: int 200
+  ..$ headers    :List of 7
+  .. ..$ content-type    : chr "application/json; charset=UTF-8"
+  .. ..$ vary            : chr "Accept-Encoding"
+  .. ..$ content-encoding: chr "gzip"
+  .. ..$ expires         : chr "Sun, 09 Oct 2016 21:45:42 GMT"
+  .. ..$ date            : chr "Sun, 09 Oct 2016 21:45:42 GMT"
+  .. ..$ content-length  : chr "1584"
+  .. ..$ connection      : chr "keep-alive"
+  .. ..- attr(*, "class")= chr [1:2] "insensitive" "list"
+  ..$ all_headers:List of 1
+  .. ..$ :List of 3
+  .. .. ..$ status : int 200
+  .. .. ..$ version: chr "HTTP/1.1"
+  .. .. ..$ headers:List of 7
+  .. .. .. ..$ content-type    : chr "application/json; charset=UTF-8"
+  .. .. .. ..$ vary            : chr "Accept-Encoding"
+  .. .. .. ..$ content-encoding: chr "gzip"
+  .. .. .. ..$ expires         : chr "Sun, 09 Oct 2016 21:45:42 GMT"
+  .. .. .. ..$ date            : chr "Sun, 09 Oct 2016 21:45:42 GMT"
+  .. .. .. ..$ content-length  : chr "1584"
+  .. .. .. ..$ connection      : chr "keep-alive"
+  .. .. .. ..- attr(*, "class")= chr [1:2] "insensitive" "list"
+  ..$ cookies    :'data.frame':	0 obs. of  7 variables:
+  .. ..$ domain    : logi(0) 
+  .. ..$ flag      : logi(0) 
+  .. ..$ path      : logi(0) 
+  .. ..$ secure    : logi(0) 
+  .. ..$ expiration:Classes 'POSIXct', 'POSIXt'  num(0) 
+  .. ..$ name      : logi(0) 
+  .. ..$ value     : logi(0) 
+  ..$ content    : raw [1:8027] 7b 0a 22 67 ...
+  ..$ date       : POSIXct[1:1], format: "2016-10-09 21:45:42"
+  ..$ times      : Named num [1:6] 0 0.015 0.015 0.015 0.312 0.312
+  .. ..- attr(*, "names")= chr [1:6] "redirect" "namelookup" "connect" "pretransfer" ...
+  ..$ request    :List of 7
+  .. ..$ method    : chr "GET"
+  .. ..$ url       : chr "http://api.steampowered.com/IDOTA2Match_570/GetTopLiveGame/v1/?partner=1&key=DA334DF185E0EF603B6462425245A5AF&language=en"
+  .. ..$ headers   : Named chr "application/json, text/xml, application/xml, */*"
+  .. .. ..- attr(*, "names")= chr "Accept"
+  .. ..$ fields    : NULL
+  .. ..$ options   :List of 3
+  .. .. ..$ cainfo   : chr "C:/Users/teoboot/Documents/R/win-library/3.3/openssl/cacert.pem"
+  .. .. ..$ useragent: chr "http://github.com/lyzander/RDota2"
+  .. .. ..$ httpget  : logi TRUE
+  .. ..$ auth_token: NULL
+  .. ..$ output    : list()
+  .. .. ..- attr(*, "class")= chr [1:2] "write_memory" "write_function"
+  .. ..- attr(*, "class")= chr "request"
+  ..$ handle     :Class 'curl_handle' <externalptr> 
+  ..- attr(*, "class")= chr "response"
+ - attr(*, "class")= chr "dota_api"
