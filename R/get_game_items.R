@@ -1,18 +1,21 @@
-#' Information about DotaTV-supported leagues
+#' Dota Items
 #'
-#' Information about DotaTV-supported leagues.
+#' Dota Items.
 #'
 #' A list will be returned that contains three elements. The content, the url and the response
 #' received from the api.
 #'
-#' The content is probably the most useful part for the user since it is a data.frame containing the
-#' information about the DotaTV-supported leagues. It consists of the five following columns:
+#' The content element of the list contains a data.frame with all the items. Each row of the
+#' data.frame is an item and the following column are included:
+#'
 #' \itemize{
-#'   \item \strong{leagues:} The leagues supported in-game via DotaTV.
-#'   \item \strong{name:} The league name.
-#'   \item \strong{leagueid:} The ID of the league (unique).
-#'   \item \strong{description:} A description containing information about the league.
-#'   \item \strong{tournament_url:} The website of the link.
+#'   \item \strong{id:} Item's ID.
+#'   \item \strong{name:} Item's tokenised name.
+#'   \item \strong{cost:} Item's in-game cost.
+#'   \item \strong{secret_shop:} Boolean. Whether it is sold in the secret shop.
+#'   \item \strong{side_shop:} Boolean. Whether it is sold in the side shop.
+#'   \item \strong{recipe:} Boolean. Whether it is a recipe.
+#'   \item \strong{localized_name:} Localised name of item.
 #' }
 #'
 #' @param key The api key obtained from Steam. If you don't have one please visit
@@ -30,13 +33,14 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_league_listing()
-#' get_league_listing(language = 'en', key = NULL)
-#' get_league_listing(language = 'en', key = 'xxxxxxxxxxx')
+#' get_game_items()
+#' get_game_items(language = 'en', key = NULL)
+#' get_game_items(language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
 #' @export
-get_league_listing <- function(language = 'en', key = NULL) {
+get_game_items <- function(language = 'en',
+                           key = NULL) {
 
  #if key is null look in the environment variables
  if (is.null(key)) {
@@ -55,8 +59,9 @@ get_league_listing <- function(language = 'en', key = NULL) {
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
  #fetching response
- resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetLeagueListing/v1/',
-                   query = list(key = key, language = language),
+ resp <- httr::GET('http://api.steampowered.com/IEconDOTA2_570/GetGameItems/v1/',
+                   query = list(key = key,
+                                language = language),
                    ua)
 
  #get url
@@ -69,26 +74,19 @@ get_league_listing <- function(language = 'en', key = NULL) {
   stop("API did not return json", call. = FALSE)
  }
 
- #parse response
- parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
- #convert to a data.frame
- df <- do.call(rbind.data.frame, c(parsed[[1]][[1]], stringsAsFactors = FALSE))
+ #parse response - each element in games is a game(!)
+ items <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]][[1]]
+ items <- do.call(rbind.data.frame, c(items, stringsAsFactors = FALSE))
 
  #output
  structure(
   list(
-   content = df,
+   content = items,
    url = url,
    response = resp
   ),
   class = "dota_api"
  )
 
-}
+ }
 
-#print method for dota_api
-print.dota_api <- function(x, ...) {
- cat("<RDota2 ", x$url, ">\n\n", sep = "")
- print(x$content)
- invisible(x)
-}
