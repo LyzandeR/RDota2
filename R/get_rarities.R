@@ -1,21 +1,19 @@
-#' Dota Items
+#' Dota Store Item Rarities
 #'
-#' Dota Items.
+#' A data.frame of Dota2 Store Item Rarities.
 #'
 #' A list will be returned that contains three elements. The content, the url and the response
 #' received from the api.
 #'
-#' The content element of the list contains a data.frame with all the items. Each row of the
-#' data.frame is an item and the following columns are included:
+#' The content element of the list contains a data.frame with all the store item rarities.
+#' Each row of the data.frame is an store item rarity and the following columns are included:
 #'
 #' \itemize{
-#'   \item \strong{id:} Item's ID.
-#'   \item \strong{name:} Item's tokenised name.
-#'   \item \strong{cost:} Item's in-game cost.
-#'   \item \strong{secret_shop:} Boolean. Whether it is sold in the secret shop.
-#'   \item \strong{side_shop:} Boolean. Whether it is sold in the side shop.
-#'   \item \strong{recipe:} Boolean. Whether it is a recipe.
-#'   \item \strong{localized_name:} Localised name of item.
+#'   \item \strong{name:} Internal rarity name.
+#'   \item \strong{id:} Rarity's ID.
+#'   \item \strong{order:} Logical order of rarities. From most common to most rare.
+#'   \item \strong{color:} Hexadecimal RGB color of the rarity's name.
+#'   \item \strong{localized_name:} In-game rarity name.
 #' }
 #'
 #' @param key The api key obtained from Steam. If you don't have one please visit
@@ -33,14 +31,13 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_game_items()
-#' get_game_items(language = 'en', key = NULL)
-#' get_game_items(language = 'en', key = 'xxxxxxxxxxx')
+#' get_rarities(language = 'en', key = NULL)
+#' get_rarities(language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
 #' @export
-get_game_items <- function(language = 'en',
-                           key = NULL) {
+get_rarities <- function(language = 'en',
+                         key = NULL) {
 
  #if key is null look in the environment variables
  if (is.null(key)) {
@@ -59,7 +56,7 @@ get_game_items <- function(language = 'en',
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
  #fetching response
- resp <- httr::GET('http://api.steampowered.com/IEconDOTA2_570/GetGameItems/v1/',
+ resp <- httr::GET('http://api.steampowered.com/IEconDOTA2_570/GetRarities/v1/',
                    query = list(key = key,
                                 language = language),
                    ua)
@@ -75,18 +72,18 @@ get_game_items <- function(language = 'en',
  }
 
  #parse response - each element in games is a game(!)
- items <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]][[1]]
- items <- do.call(rbind.data.frame, c(items, stringsAsFactors = FALSE))
+ rarities <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]][[2]]
+ rarities <- do.call(rbind.data.frame, c(rarities, stringsAsFactors = FALSE))
 
  #output
  structure(
   list(
-   content = items,
+   content = rarities,
    url = url,
    response = resp
   ),
   class = "dota_api"
  )
 
-}
+ }
 

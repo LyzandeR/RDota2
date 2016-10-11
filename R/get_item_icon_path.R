@@ -1,21 +1,18 @@
-#' Dota Items
+#' Icon Paths for items
 #'
-#' Dota Items.
+#' Icon Paths for items.
 #'
 #' A list will be returned that contains three elements. The content, the url and the response
 #' received from the api.
 #'
-#' The content element of the list contains a data.frame with all the items. Each row of the
-#' data.frame is an item and the following columns are included:
+#' @param iconname The item icon name.
+#'
+#' @param icontype (optional) The type of image you want.
 #'
 #' \itemize{
-#'   \item \strong{id:} Item's ID.
-#'   \item \strong{name:} Item's tokenised name.
-#'   \item \strong{cost:} Item's in-game cost.
-#'   \item \strong{secret_shop:} Boolean. Whether it is sold in the secret shop.
-#'   \item \strong{side_shop:} Boolean. Whether it is sold in the side shop.
-#'   \item \strong{recipe:} Boolean. Whether it is a recipe.
-#'   \item \strong{localized_name:} Localised name of item.
+#'   \item 0 - normal
+#'   \item 1 - large
+#'   \item 3 - ingame
 #' }
 #'
 #' @param key The api key obtained from Steam. If you don't have one please visit
@@ -33,14 +30,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_game_items()
-#' get_game_items(language = 'en', key = NULL)
-#' get_game_items(language = 'en', key = 'xxxxxxxxxxx')
+#' get_item_icon_path(language = 'en', key = NULL)
+#' get_item_icon_path(language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
 #' @export
-get_game_items <- function(language = 'en',
-                           key = NULL) {
+get_item_icon_path <- function(iconname,
+                               icontype = '0',
+                               language = 'en',
+                               key = NULL) {
 
  #if key is null look in the environment variables
  if (is.null(key)) {
@@ -55,11 +53,14 @@ get_game_items <- function(language = 'en',
   }
  }
 
+ #make sure icontype is right
+ icontype <- match.arg(icontype)
+
  #set a user agent
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
  #fetching response
- resp <- httr::GET('http://api.steampowered.com/IEconDOTA2_570/GetGameItems/v1/',
+ resp <- httr::GET('http://api.steampowered.com/IEconDOTA2_570/GetItemIconPath/v1/',
                    query = list(key = key,
                                 language = language),
                    ua)
@@ -75,13 +76,12 @@ get_game_items <- function(language = 'en',
  }
 
  #parse response - each element in games is a game(!)
- items <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]][[1]]
- items <- do.call(rbind.data.frame, c(items, stringsAsFactors = FALSE))
+ path <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
 
  #output
  structure(
   list(
-   content = items,
+   content = path,
    url = url,
    response = resp
   ),
