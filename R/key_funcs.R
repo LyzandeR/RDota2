@@ -3,7 +3,7 @@
 .RdotaEnv$key <- NULL
 
 # Set key to environment
-set_key <- function(value) {
+register_key <- function(value) {
  .RdotaEnv$key <- value
  if (!is.null(value) | nzchar(value)) message('Key set successfully')
  invisible(value)
@@ -17,6 +17,8 @@ get_key <- function() {
 #delete key from environment
 delete_key <- function() {
  rm('key', envir = .RdotaEnv)
+ if (is.null(get_key())) message('Key deleted successfully')
+ invisible(NULL)
 }
 
 #' This function makes the key accessible to all functions.
@@ -45,27 +47,25 @@ delete_key <- function() {
 #'
 #' @examples
 #' \dontrun{
-#' register_key(operation = 'set_key', value = Sys.getenv('RDota_KEY'))
-#' register_key(operation = 'set_key', value = 'xxxxxxxxxxxxx')
-#' register_key(operation = 'get_key')
-#' register_key(operation = 'delete_key')
+#' key_actions(operation = 'register_key', value = Sys.getenv('RDota_KEY'))
+#' key_actions(operation = 'register_key', value = 'xxxxxxxxxxxxx')
+#' key_actions(operation = 'get_key')
+#' key_actions(operation = 'delete_key')
 #' }
 #'
 #' @export
-register_key <- function(operation = c('set_key', 'get_key', 'delete_key'), value = NULL) {
+key_actions <- function(action = c('register_key', 'get_key', 'delete_key'), value = NULL) {
 
  #make sure right operation was provided
- operation <- match.arg(operation)
+ action <- match.arg(action)
 
- if (operation == 'set_key') {
-  set_key(value)
- } else if (operation == 'get_key') {
-  get_key()
- } else if (operation == 'delete_key') {
-  delete_key()
+ if (action == 'register_key') {
+  return(register_key(value))
+ } else if (action == 'get_key') {
+  return(get_key())
+ } else if (action == 'delete_key') {
+  return(delete_key())
  }
-
- invisible(value)
 
 }
 

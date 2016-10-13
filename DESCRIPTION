@@ -14,3 +14,4 @@ Description: This is an R Web Api Client for Valve's Dota2, which can be easily
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
+Suggests: testthat
