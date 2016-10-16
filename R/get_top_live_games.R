@@ -7,7 +7,7 @@
 #'
 #' The content element of the list contains a games_list list which contains
 #' information about the top live games. The following information is provided for each game
-#' (Categories are not documented at the time of writting - please check
+#' (Categories are not documented at the time of the release - please check
 #' \url{https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame}):
 #'
 #' \itemize{
@@ -52,6 +52,8 @@
 #' get_top_live_game(patner = 1, language = 'en', key = NULL)
 #' get_top_live_game(patner = 2, language = 'en', key = 'xxxxxxxxxxx')
 #' }
+#'
+#' @references \url{https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame}
 #'
 #' @export
 get_top_live_game <- function(partner = 1,

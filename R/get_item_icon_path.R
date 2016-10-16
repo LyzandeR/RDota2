@@ -61,7 +61,9 @@ get_item_icon_path <- function(iconname,
 
  #fetching response
  resp <- httr::GET('http://api.steampowered.com/IEconDOTA2_570/GetItemIconPath/v1/',
-                   query = list(key = key,
+                   query = list(iconname = iconname,
+                                icontype = 'icontype',
+                                key = key,
                                 language = language),
                    ua)
 

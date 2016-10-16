@@ -5,8 +5,8 @@
 #' A list will be returned that contains three elements. The content, the url and the
 #' response received from the api.
 #'
-#' The content element of the list contains information about the matches.
-#' Each element of the content list is a game. Each game consists of a list of (some) of
+#' The content element of the list is a list that contains information about the matches.
+#' Each element of the matches list is a game. Each game consists of a list of (some) of
 #' the following sections:
 #'
 #' \itemize{
@@ -54,7 +54,7 @@
 #' No 15 does not exist
 #'
 #' @param skill (optional) Skill bracket.
-#' \itemise{
+#' \itemize{
 #' \item 0 - Any
 #' \item 1 - Normal
 #' \item 2 - High
@@ -81,7 +81,7 @@
 #' \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
 #' to use this key please visit \url{https://github.com/LyzandeR/RDota2} and check the readme file.
 #' You can also see the examples. A key can be made available to all the functions by using
-#' \code{register_key}. The key argument in individual functions should only be used in case the
+#' \code{key_actions}. The key argument in individual functions should only be used in case the
 #' user needs to work with multiple keys.
 #'
 #' @param language The ISO639-1 language code for returning all the information in the corresponding
@@ -96,6 +96,9 @@
 #' get_match_history(language = 'en', key = NULL)
 #' get_match_history(language = 'en', key = 'xxxxxxxxxxx')
 #' }
+#'
+#' @section Steam API Documentation
+#' \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchHistory}
 #'
 #' @export
 get_match_history <- function(hero_id = NULL,
@@ -119,7 +122,7 @@ get_match_history <- function(hero_id = NULL,
   #if key is blank space then stop i.e. environment variable has not be set.
   if (is.null(key) || !nzchar(key)) {
    stop(strwrap('The function cannot find an API key. Please register a key by using
-                the RDota2::register_key function. If you do not have a key you can
+                the RDota2::key_actions function. If you do not have a key you can
                 obtain one by visiting https://steamcommunity.com/dev.',
                 width = 1e10))
   }
@@ -137,7 +140,7 @@ get_match_history <- function(hero_id = NULL,
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
  #fetching response
- resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/',
+ resp <- httr::GET('http://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/v1/',
                    query = list(hero_id = hero_id,
                                 game_mode = game_mode,
                                 skill = skill,
@@ -164,7 +167,7 @@ get_match_history <- function(hero_id = NULL,
  }
 
  #parse response - each element in games is a game(!)
- games <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]][[1]]
+ games <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]]
 
  #output
  structure(

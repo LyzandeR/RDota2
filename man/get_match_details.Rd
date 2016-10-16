@@ -31,8 +31,9 @@ Player information about a specific match ID.
 A list will be returned that contains four elements. The content_player, the content_game,
 the url and the response received from the api.
 
-The content_player element is a list that contains information about the players participating in
-a match. The information included (as elements of the list):
+The content element is a list that contains information about the players participating in
+a match and also information about the match. The first element of the content list contains
+information about the players. The following details are included:
 
 \itemize{
   \item \strong{account_id:} The player's account id.
@@ -66,8 +67,8 @@ a match. The information included (as elements of the list):
   \item \strong{ability_upgrades:} A list of all abilities in order of upgrade.
 }
 
-The content_game element is a list that contains information about the match. The information
-included included (as elements of the list):
+The rest of the elements of the content list contain information about the match. The following
+details are included:
 
 \itemize{
   \item \strong{radiant_win:} Boolean. Whether radiant won or not.
@@ -92,6 +93,10 @@ included included (as elements of the list):
   \item \strong{radiant_score:} Undocumented.
   \item \strong{dire_score:} Undocumented.
 }
+}
+\section{Steam API Documentation}{
+
+\url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}
 }
 \examples{
 \dontrun{

@@ -5,8 +5,9 @@
 #' A list will be returned that contains four elements. The content_player, the content_game,
 #' the url and the response received from the api.
 #'
-#' The content_player element is a list that contains information about the players participating in
-#' a match. The information included (as elements of the list):
+#' The content element is a list that contains information about the players participating in
+#' a match and also information about the match. The first element of the content list contains
+#' information about the players. The following details are included:
 #'
 #' \itemize{
 #'   \item \strong{account_id:} The player's account id.
@@ -24,7 +25,7 @@
 #'   \item \strong{deaths:} Number of times player died.
 #'   \item \strong{assists:} Number of assists player achieved.
 #'   \item \strong{leaver_status:} Integer from 0-6. Check
-#'     /url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
+#'     \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
 #'   \item \strong{last_hits:} Number of last hits.
 #'   \item \strong{denies:} Number of denies.
 #'   \item \strong{level:} Hero level at the end of game.
@@ -40,8 +41,8 @@
 #'   \item \strong{ability_upgrades:} A list of all abilities in order of upgrade.
 #' }
 #'
-#' The content_game element is a list that contains information about the match. The information
-#' included included (as elements of the list):
+#' The rest of the elements of the content list contain information about the match. The following
+#' details are included:
 #'
 #' \itemize{
 #'   \item \strong{radiant_win:} Boolean. Whether radiant won or not.
@@ -51,7 +52,7 @@
 #'   \item \strong{match_id:} The match's unique id.
 #'   \item \strong{match_seq_num:} A sequence number. It represents the order matches were recorded.
 #'   \item \strong{tower_status_radiant:} Tower Status. Check
-#'     /url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
+#'     \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
 #'   \item \strong{barracks_status_dire:} Same as above.
 #'   \item \strong{cluster:} The server cluster (used for downloading replays).
 #'   \item \strong{first_blood_time:} Time in seconds when the first blood occured.
@@ -90,6 +91,9 @@
 #' get_match_details(match_id = 2686721815, language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
+#' @section Steam API Documentation:
+#' \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}
+#'
 #' @export
 get_match_details <- function(match_id, language = 'en', key = NULL) {
 
@@ -125,13 +129,12 @@ get_match_details <- function(match_id, language = 'en', key = NULL) {
  }
 
  #parse response - each element in players is a player(!)
- parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
+ parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)[[1]]
 
  #output
  structure(
   list(
-   content_players = parsed[[1]][[1]],
-   content_game = parsed[[1]][-1],
+   content = parsed,
    url = url,
    response = resp
   ),
