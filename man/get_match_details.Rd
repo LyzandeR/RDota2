@@ -51,7 +51,7 @@ information about the players. The following details are included:
   \item \strong{deaths:} Number of times player died.
   \item \strong{assists:} Number of assists player achieved.
   \item \strong{leaver_status:} Integer from 0-6. Check
-    /url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
+    \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
   \item \strong{last_hits:} Number of last hits.
   \item \strong{denies:} Number of denies.
   \item \strong{level:} Hero level at the end of game.
@@ -78,7 +78,7 @@ details are included:
   \item \strong{match_id:} The match's unique id.
   \item \strong{match_seq_num:} A sequence number. It represents the order matches were recorded.
   \item \strong{tower_status_radiant:} Tower Status. Check
-    /url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
+    \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails}.
   \item \strong{barracks_status_dire:} Same as above.
   \item \strong{cluster:} The server cluster (used for downloading replays).
   \item \strong{first_blood_time:} Time in seconds when the first blood occured.

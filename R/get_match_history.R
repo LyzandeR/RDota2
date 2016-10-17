@@ -97,7 +97,7 @@
 #' get_match_history(language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
-#' @section Steam API Documentation
+#' @section Steam API Documentation:
 #' \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchHistory}
 #'
 #' @export
