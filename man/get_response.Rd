@@ -4,15 +4,16 @@
 \alias{get_response}
 \title{The engine of the request functions}
 \usage{
-get_response(dota_id, dota_api_method, dota_api_category, api_version, ...)
+get_response(dota_id, dota_api_method, dota_api_category, api_version, args)
 }
 \arguments{
-\item{dota_id}{Can take three values.
+\item{dota_id}{Can take one of three values.
 
-\itemize {
-
-}570 for Dota 2, 816 for Dota 2 Internal Test or
-205790 for Dota 2 beta test.}
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
 
 \item{dota_api_method}{The api method.}
 
@@ -20,10 +21,12 @@ get_response(dota_id, dota_api_method, dota_api_category, api_version, ...)
 
 \item{api_version}{The api version.}
 
-\item{...}{The query arguments for GET.}
+\item{args}{The query arguments for GET.}
 }
 \value{
 A response to be used in the rest of the get_* family functions.
+
+%makes documentation available but removes function from index
 }
 \description{
 The function used to fetch the response content inside the the API functions.

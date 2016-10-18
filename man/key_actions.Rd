@@ -8,27 +8,27 @@ key_actions(action = c("register_key", "get_key", "delete_key"),
   value = NULL)
 }
 \arguments{
-\item{value}{The steam key to use. It is used only in the \code{set_key} operation. If you do not
-have a key, you can get one at \url{https://steamcommunity.com/dev}.}
+\item{action}{Which operation to perform. Check the details.}
 
-\item{operation}{Which operation to perform. Check the details.}
+\item{value}{The steam key to use. It is used only in the \code{register_key} action. If you
+do not have a key, you can get one at \url{https://steamcommunity.com/dev}.}
 }
 \value{
 A dota_api object containing the elements described in the details.
 }
 \description{
-\code{register_key} will allow the user to set, get (retrieve) or delete the key.
+\code{key_actions} will allow the user to register (set), get (retrieve) or delete the key.
 }
 \details{
-There are three operations that can be selected in this function:
+There are three actions that can be performed in this function:
 \itemize{
-  \item \strong{set_key} This operation sets the key and at the same time makes it available to
-                         all the other functions. The \code{key} argument in the api calls
-                         (i.e. functions) should not be used after setting the key with
-                         \code{register_key}. It is good practice to store the key in an
-                         environment variable in .Renviron and then use \code{Sys.getenv()} to
-                         retrieve it. This technique is described in detail in
-                         \url{https://github.com/LyzandeR/RDota2} in the readme file.
+  \item \strong{register_key} This action sets the key and at the same time makes it available
+                              to all the other functions. The key argument in the api calls
+                              (i.e. functions) should not be used after setting the key with
+                              \code{key_actions}. It is good practice to store the key in an
+                              environment variable in .Renviron and then use \code{Sys.getenv()}
+                              to retrieve it. This technique is described in detail in
+                              \url{https://github.com/LyzandeR/RDota2} in the readme file.
   \item \strong{get_key} Returns the current key.
   \item \strong{delete_key} Deletes the key.
 }

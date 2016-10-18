@@ -4,9 +4,17 @@
 \alias{get_game_items}
 \title{Dota Items}
 \usage{
-get_game_items(language = "en", key = NULL)
+get_game_items(dota_id = 570, language = "en", key = NULL)
 }
 \arguments{
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
+
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the
 ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes}.}
@@ -44,8 +52,8 @@ data.frame is an item and the following columns are included:
 \examples{
 \dontrun{
 get_game_items()
-get_game_items(language = 'en', key = NULL)
-get_game_items(language = 'en', key = 'xxxxxxxxxxx')
+get_game_items(dota_id = 570, language = 'en', key = NULL)
+get_game_items(dota_id = 570, language = 'en', key = 'xxxxxxxxxxx')
 }
 
 }
