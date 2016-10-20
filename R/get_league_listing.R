@@ -48,9 +48,4 @@ get_league_listing <- function(dota_id = 570, language = 'en', key = NULL) {
 
 }
 
-#print method for dota_api
-print.dota_api <- function(x, ...) {
- cat("<RDota2 ", x$url, ">\n\n", sep = "")
- print(x$content)
- invisible(x)
-}
+

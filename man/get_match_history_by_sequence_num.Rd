@@ -5,12 +5,22 @@
 \title{A list of Matches}
 \usage{
 get_match_history_by_sequence_num(start_at_match_seq_num = NULL,
-  matches_requested = NULL, language = "en", key = NULL)
+  matches_requested = NULL, dota_id = "570", language = "en",
+  key = NULL)
 }
 \arguments{
-\item{start_at_match_seq_num}{The match sequence number to start returning results from.}
+\item{start_at_match_seq_num}{(Optional) The match sequence number to start returning results
+from.}
 
-\item{matches_requested}{The number of matches to return.}
+\item{matches_requested}{(Optional) The number of matches to return.}
+
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
 
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the
@@ -20,7 +30,7 @@ ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_
 \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
 to use this key please visit \url{https://github.com/LyzandeR/RDota2} and check the readme file.
 You can also see the examples. A key can be made available to all the functions by using
-\code{register_key}. The key argument in individual functions should only be used in case the
+\code{key_actions}. The key argument in individual functions should only be used in case the
 user needs to work with multiple keys.}
 }
 \value{
@@ -36,6 +46,10 @@ response received from the api.
 The content element of the list contains information about the matches. Each match follows
 exactly the same structure as the match retrieved from get_match_details. Please check that
 function's help for detailed information.
+}
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetMatchHistoryBySequenceNum}
 }
 \examples{
 \dontrun{

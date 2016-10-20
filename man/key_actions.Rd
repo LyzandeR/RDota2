@@ -8,7 +8,7 @@ key_actions(action = c("register_key", "get_key", "delete_key"),
   value = NULL)
 }
 \arguments{
-\item{action}{Which operation to perform. Check the details.}
+\item{action}{Which action to perform. Check the details.}
 
 \item{value}{The steam key to use. It is used only in the \code{register_key} action. If you
 do not have a key, you can get one at \url{https://steamcommunity.com/dev}.}
@@ -35,10 +35,10 @@ There are three actions that can be performed in this function:
 }
 \examples{
 \dontrun{
-key_actions(operation = 'register_key', value = Sys.getenv('RDota_KEY'))
-key_actions(operation = 'register_key', value = 'xxxxxxxxxxxxx')
-key_actions(operation = 'get_key')
-key_actions(operation = 'delete_key')
+key_actions(action = 'register_key', value = Sys.getenv('RDota_KEY'))
+key_actions(action = 'register_key', value = 'xxxxxxxxxxxxx')
+key_actions(action = 'get_key')
+key_actions(action = 'delete_key')
 }
 
 }

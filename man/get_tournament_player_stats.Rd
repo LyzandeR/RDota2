@@ -4,18 +4,26 @@
 \alias{get_tournament_player_stats}
 \title{Tournament Player Stats}
 \usage{
-get_tournament_player_stats(account_id = NULL, league_id = NULL,
-  hero_id = NULL, time_frame = NULL, language = "en", key = NULL)
+get_tournament_player_stats(account_id, league_id = NULL, hero_id = NULL,
+  time_frame = NULL, dota_id = 570, language = "en", key = NULL)
 }
 \arguments{
 \item{account_id}{Player's account id.}
 
-\item{league_id}{(optional) The league id. Only the International is supported.}
+\item{league_id}{(optional) The league id. Only the International is supported (65006).}
 
 \item{hero_id}{(optional) A hero id.}
 
 \item{time_frame}{(optional) Only return stats between this time frame (The parameter format
-is not yet known i.e. it is not in use just yet).}
+is not yet known i.e. it is not in use just yet according to the API's documentation).}
+
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
 
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the
@@ -25,7 +33,7 @@ ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_
 \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
 to use this key please visit \url{https://github.com/LyzandeR/RDota2} and check the readme file.
 You can also see the examples. A key can be made available to all the functions by using
-\code{register_key}. The key argument in individual functions should only be used in case the
+\code{key_actions}. The key argument in individual functions should only be used in case the
 user needs to work with multiple keys.}
 }
 \value{
@@ -41,10 +49,13 @@ received from the api.
 The content element of the list contains information about the matches the player played and
 information about global stats.
 }
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetTournamentPlayerStats}
+}
 \examples{
 \dontrun{
-get_tournament_player_stats()
-get_tournament_player_stats(teams_requested = 10)
+get_tournament_player_stats(account_id = 89550641, league_id = 65006)
 get_tournament_player_stats(language = 'en', key = NULL)
 get_tournament_player_stats(language = 'en', key = 'xxxxxxxxxxx')
 }

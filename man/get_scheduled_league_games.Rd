@@ -4,8 +4,8 @@
 \alias{get_scheduled_league_games}
 \title{Scheduled League Games}
 \usage{
-get_scheduled_league_games(date_min = NULL, date_max = NULL,
-  language = "en", key = NULL, ...)
+get_scheduled_league_games(date_min = NULL, date_max = NULL, tz = "",
+  dota_id = "570", language = "en", key = NULL)
 }
 \arguments{
 \item{date_min}{(optional) A date of the format "yyyy-mm-dd HH:MM:SS". See examples for details.
@@ -13,6 +13,17 @@ Return games from this date onwards.}
 
 \item{date_max}{(optional) A date of the format "yyyy-mm-dd HH:MM:SS". See examples for details.
 Return games up to this date}
+
+\item{tz}{A time zone specification if date_min and/or date_max are used. See
+\link{as.POSIXct}. "" (default) is the current time zone and "GMT" is UTC.}
+
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
 
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the
@@ -22,11 +33,8 @@ ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_
 \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
 to use this key please visit \url{https://github.com/LyzandeR/RDota2} and check the readme file.
 You can also see the examples. A key can be made available to all the functions by using
-\code{register_key}. The key argument in individual functions should only be used in case the
+\code{key_actions}. The key argument in individual functions should only be used in case the
 user needs to work with multiple keys.}
-
-\item{...}{arguments to be passed to as.POSIXct internally. This comes in handy when setting
-a tize zone with tz. Dates will be converted to UNIX timestamps before passed on to the API.}
 }
 \value{
 A dota_api object containing the elements described in the details.
@@ -43,26 +51,17 @@ Each element of the games list is a game. Each game consists of (some) of
 the following sections:
 
 \itemize{
-  \item \strong{players:} A list of lists containing information about the players.
-  \item \strong{radiant_team} A list of radiant team infomation.
-  \item \strong{dire_team} A list of dire team infomation.
-  \item \strong{lobby_id:} The lobby id.
-  \item \strong{match_id:} The match id.
-  \item \strong{spectators:} The number of spectators.
-  \item \strong{series_id:} The series id.
-  \item \strong{game_number:} The game number.
-  \item \strong{league_id:} The league id.
-  \item \strong{stream_delay_s:} The stream delay in secs.
-  \item \strong{radiant_series_wins:} Radiant series wins.
-  \item \strong{dire_series_wins:} Dire series wins.
-  \item \strong{series_type:} Series type.
-  \item \strong{league_series_id:} The league series id.
-  \item \strong{league_game_id:} The league game id.
-  \item \strong{stage_name:} The name of the stage.
-  \item \strong{league_tier:} League tier.
-  \item \strong{scoreboard:} A huge list containing scoreboard information. Scoreboard might
-  be missing from some of the games.
+  \item \strong{league_id:} The unique league id.
+  \item \strong{game_id:} A unique game id.
+  \item \strong{teams:} A list of the participating teams.
+  \item \strong{starttime:} Unix Timestamp of start time.
+  \item \strong{comment:} Description of game.
+  \item \strong{final:} Whether the game is a final or not.
 }
+}
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetScheduledLeagueGames}
 }
 \examples{
 \dontrun{

@@ -118,7 +118,7 @@ the following sections:
 }
 \examples{
 \dontrun{
-get_match_history()
+get_match_history(matches_requested = 2)
 get_match_history(language = 'en', key = NULL)
 get_match_history(language = 'en', key = 'xxxxxxxxxxx')
 }

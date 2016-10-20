@@ -4,11 +4,20 @@
 \alias{get_top_live_game}
 \title{Top Live Games}
 \usage{
-get_top_live_game(partner = 1, language = "en", key = NULL)
+get_top_live_game(partner = 1, dota_id = 570, language = "en",
+  key = NULL)
 }
 \arguments{
 \item{partner}{The documentation does not specify what this parameter should be but it seems
 like numbers from 1-3 return results of live games.}
+
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
 
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the
@@ -18,7 +27,7 @@ ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_
 \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
 to use this key please visit \url{https://github.com/LyzandeR/RDota2} and check the readme file.
 You can also see the examples. A key can be made available to all the functions by using
-\code{register_key}. The key argument in individual functions should only be used in case the
+\code{key_actions}. The key argument in individual functions should only be used in case the
 user needs to work with multiple keys.}
 }
 \value{
@@ -34,7 +43,7 @@ received from the api.
 The content element of the list contains a games_list list which contains
 information about the top live games. The following information is provided for each game
 (Categories are not documented at the time of the release - please check
-\url{https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame}):
+the Steam API Documentation link below:
 
 \itemize{
   \item \strong{activate_time}
@@ -56,15 +65,16 @@ information about the top live games. The following information is provided for 
   \item \strong{players}
 }
 }
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame}
+}
 \examples{
 \dontrun{
-get_top_live_game(patner = 1)
-get_top_live_game(patner = 1, language = 'en', key = NULL)
-get_top_live_game(patner = 2, language = 'en', key = 'xxxxxxxxxxx')
+get_top_live_game(partner = 1)
+get_top_live_game(partner = 1, language = 'en', key = NULL)
+get_top_live_game(partner = 2, language = 'en', key = 'xxxxxxxxxxx')
 }
 
-}
-\references{
-\url{https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame}
 }
 

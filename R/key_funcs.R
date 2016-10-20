@@ -38,7 +38,7 @@ delete_key <- function() {
 #'   \item \strong{delete_key} Deletes the key.
 #' }
 #'
-#' @param action Which operation to perform. Check the details.
+#' @param action Which action to perform. Check the details.
 #'
 #' @param value The steam key to use. It is used only in the \code{register_key} action. If you
 #'        do not have a key, you can get one at \url{https://steamcommunity.com/dev}.
@@ -47,10 +47,10 @@ delete_key <- function() {
 #'
 #' @examples
 #' \dontrun{
-#' key_actions(operation = 'register_key', value = Sys.getenv('RDota_KEY'))
-#' key_actions(operation = 'register_key', value = 'xxxxxxxxxxxxx')
-#' key_actions(operation = 'get_key')
-#' key_actions(operation = 'delete_key')
+#' key_actions(action = 'register_key', value = Sys.getenv('RDota_KEY'))
+#' key_actions(action = 'register_key', value = 'xxxxxxxxxxxxx')
+#' key_actions(action = 'get_key')
+#' key_actions(action = 'delete_key')
 #' }
 #'
 #' @export
