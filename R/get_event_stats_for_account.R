@@ -23,6 +23,9 @@
 #'
 #' @return A dota_api object containing the elements described in the details.
 #'
+#' @section Steam API Documentation:
+#'  \url{https://wiki.teamfortress.com/wiki/WebAPI/GetEventStatsForAccount}
+#'
 #' @examples
 #' \dontrun{
 #' get_event_stats_for_account(eventid = 65006, accountid = 89550641)

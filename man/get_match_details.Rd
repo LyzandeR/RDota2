@@ -4,11 +4,19 @@
 \alias{get_match_details}
 \title{Information about a specific match}
 \usage{
-get_match_details(match_id, language = "en", key = NULL)
+get_match_details(match_id, dota_id = 570, language = "en", key = NULL)
 }
 \arguments{
 \item{match_id}{The match ID you want to get information about. Can be either numeric or
 .character}
+
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
 
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the
@@ -18,7 +26,7 @@ ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_
 \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
 to use this key please visit \url{https://github.com/LyzandeR/RDota2} and check the readme file.
 You can also see the examples. A key can be made available to all the functions by using
-\code{register_key}. The key argument in individual functions should only be used in case the
+\code{key_actions}. The key argument in individual functions should only be used in case the
 user needs to work with multiple keys.}
 }
 \value{

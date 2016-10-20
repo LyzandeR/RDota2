@@ -4,9 +4,17 @@
 \alias{get_league_listing}
 \title{Information about DotaTV-supported leagues}
 \usage{
-get_league_listing(language = "en", key = NULL)
+get_league_listing(dota_id = 570, language = "en", key = NULL)
 }
 \arguments{
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
+
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the
 ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes}.}
@@ -15,7 +23,7 @@ ISO639-1 language codes please visit \url{https://en.wikipedia.org/wiki/List_of_
 \url{https://steamcommunity.com/dev} in order to do so. For instructions on the correct way
 to use this key please visit \url{https://github.com/LyzandeR/RDota2} and check the readme file.
 You can also see the examples. A key can be made available to all the functions by using
-\code{register_key}. The key argument in individual functions should only be used in case the
+\code{key_actions}. The key argument in individual functions should only be used in case the
 user needs to work with multiple keys.}
 }
 \value{
@@ -37,6 +45,10 @@ information about the DotaTV-supported leagues. It consists of the five followin
   \item \strong{description:} A description containing information about the league.
   \item \strong{tournament_url:} The website of the link.
 }
+}
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetLeagueListing}
 }
 \examples{
 \dontrun{

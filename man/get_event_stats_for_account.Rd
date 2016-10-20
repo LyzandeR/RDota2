@@ -42,6 +42,10 @@ A list will be returned that contains three elements. The content, the url and t
 received from the api. Event points and actions seem to be returned from the api but none
 of them have been documented in the api.
 }
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetEventStatsForAccount}
+}
 \examples{
 \dontrun{
 get_event_stats_for_account(eventid = 65006, accountid = 89550641)

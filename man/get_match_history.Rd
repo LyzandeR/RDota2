@@ -7,8 +7,8 @@
 get_match_history(hero_id = NULL, game_mode = NULL, skill = NULL,
   date_min = NULL, date_max = NULL, min_players = NULL,
   account_id = NULL, league_id = NULL, start_at_match_id = NULL,
-  matches_requested = NULL, tournament_games_only = NULL, language = "en",
-  key = NULL)
+  matches_requested = NULL, tournament_games_only = NULL, dota_id = 570,
+  language = "en", key = NULL)
 }
 \arguments{
 \item{hero_id}{(optional) The hero id. A list of hero ids can be found
@@ -58,6 +58,14 @@ No 15 does not exist}
 \item{matches_requested}{(optional) Amount of matches to return (defaults to 25).}
 
 \item{tournament_games_only}{(optional) Binary (0 or 1). Whether to return tournament matches.}
+
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
+}}
 
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding
 language. If the language is not supported, english will be returned. For a complete list of the

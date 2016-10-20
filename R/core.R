@@ -44,6 +44,11 @@ get_response <- function(dota_id, dota_api_method, dota_api_category, api_versio
   }
  }
 
+ #make sure dota_id is one of 570, 816, 205790
+ if (!as.character(dota_id) %in% c('570', '816', '205790')) {
+  stop('dota_id needs to be one of 570, 816, 205790')
+ }
+
  #set a user agent
  ua <- httr::user_agent("http://github.com/lyzander/RDota2")
 
