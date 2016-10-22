@@ -1,7 +1,7 @@
 Package: RDota2
 Type: Package
 Title: An R Web API Client for Valve's Dota2
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: person("Theo", 
                   "Boutaris", 
                   email = "teoboot2007@hotmail.com", 

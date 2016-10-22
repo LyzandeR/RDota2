@@ -31,7 +31,7 @@ To get a key please visit [Steam Community](https://steamcommunity.com/login/hom
 
 #### Registering a key on R
 
-The typical way of working with RDota2 is to register a key on R (once in every section) and then that key will automatically be used within each one of the get_* family functions.
+The typical way of working with RDota2 is to register a key on R (**once in every section**) and then that key will automatically be used within each one of the get_* family functions.
 
 In order to register a key on R you need to use the `key_actions` function in the following way:
 
@@ -45,9 +45,9 @@ key_actions(action = 'register_key', value = 'xxxxxxxx')
 
 Instead of specifying the key on your console / script (where it would be visible to anyone), good practice dictates to save it in an environment variable. This is a very easy to do process and you only need to do it once. The key will always be made easily available in your R sessions after this. In order to store the key in an environment variable you would need to do the following: 
 
-1. Identify your home directory. Not sure? Enter normalizePath("~/") in the R console. 
-2. In your home directory create a file called .Renviron (it shouldn't have an extention like .txt). If questioned YES you do want to use a file name that begins with a dot. Note that by default dotfiles are usually hidden. But within RStudio, the file browser will make .Renviron visible and therefore easy to edit in the future.
-3. In the .Renviron file create a line like `RDota_KEY=xxxxxxxx`, where RDota_KEY will be the name of the R environment variable and xxxxxxxx will be your individual Steam API Key. Make sure the last line in the file is empty (if it isn’t R will silently fail to load the file. If you’re using an editor that shows line numbers, there should be two lines, where the second one is empty.
+1. Identify your home directory. If you don't know which one it is just run `normalizePath("~/")` in the R console. 
+2. In your home directory create a file called .Renviron (it shouldn't have an extension, like for example .txt). If questioned, YES you do want to use a file name that begins with a dot. Note that by default dotfiles are usually hidden. But within RStudio, the file browser will make .Renviron visible and therefore easy to edit in the future.
+3. In the .Renviron file type a line like `RDota_KEY=xxxxxxxx`, where RDota_KEY will be the name of the R environment variable and xxxxxxxx will be your individual Steam API Key. Make sure the last line in the file is empty (if it isn’t R will silently fail to load the file). If you’re using an editor that shows line numbers, there should be two lines, where the second one is empty.
 4. Restart your R session if you were using one, since .Renviron is parsed at the start of an R session.
 5. Access the key on your R session using `Sys.getenv`.
 
