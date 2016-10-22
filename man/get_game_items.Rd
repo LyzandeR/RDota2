@@ -49,6 +49,10 @@ data.frame is an item and the following columns are included:
   \item \strong{localized_name:} Localised name of item.
 }
 }
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetGameItems}
+}
 \examples{
 \dontrun{
 get_game_items()

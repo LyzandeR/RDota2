@@ -27,6 +27,9 @@
 #' get_game_items(dota_id = 570, language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
+#' @section Steam API Documentation:
+#'  \url{https://wiki.teamfortress.com/wiki/WebAPI/GetGameItems}
+#'
 #' @inheritParams get_response
 #' @inheritParams get_event_stats_for_account
 #'

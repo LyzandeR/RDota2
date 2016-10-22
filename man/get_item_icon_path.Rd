@@ -4,7 +4,8 @@
 \alias{get_item_icon_path}
 \title{Icon Paths for items}
 \usage{
-get_item_icon_path(iconname, icontype = "0", language = "en", key = NULL)
+get_item_icon_path(iconname, icontype = c("0", "1", "3"), dota_id = 570,
+  language = "en", key = NULL)
 }
 \arguments{
 \item{iconname}{The item icon name.}
@@ -15,6 +16,14 @@ get_item_icon_path(iconname, icontype = "0", language = "en", key = NULL)
   \item 0 - normal
   \item 1 - large
   \item 3 - ingame
+}}
+
+\item{dota_id}{Can take one of three values.
+
+\itemize{
+ \item 570 - Dota 2 (default)
+ \item 816 - Dota 2 Internal Test
+ \item 205790 - Dota 2 Beta Test
 }}
 
 \item{language}{The ISO639-1 language code for returning all the information in the corresponding

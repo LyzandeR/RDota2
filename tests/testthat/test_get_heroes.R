@@ -3,6 +3,8 @@ context("test get_heroes is working")
 test_that('function get heroes works properly', {
 
  testthat::skip_on_cran()
+ testthat::skip_on_travis()
+
 
  #fails if no key is provided and key has not been set
  expect_error(get_heroes(language = 'en',
@@ -30,5 +32,8 @@ test_that('function get heroes works properly', {
 
  #make sure function returned a results list
  expect_true(is.data.frame(get_heroes()$content))
+
+ #delete key
+ key_actions('delete_key')
 
 })

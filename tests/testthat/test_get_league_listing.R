@@ -3,6 +3,7 @@ context("test get_league_listing is working")
 test_that('function get_league_listing works properly', {
 
  testthat::skip_on_cran()
+ testthat::skip_on_travis()
 
  #fails if no key is provided and key has not been set
  expect_error(get_league_listing(language = 'en',
@@ -16,7 +17,7 @@ test_that('function get_league_listing works properly', {
               NA)
 
  #make sure url contains the right path
- expect_true(grepl('GetHeroes',
+ expect_true(grepl('GetLeagueListing',
                    get_league_listing()$url))
 
  #make sure response received i.e. api working
@@ -30,5 +31,8 @@ test_that('function get_league_listing works properly', {
 
  #make sure function returned a results list
  expect_true(is.data.frame(get_league_listing()$content))
+
+ #delete key
+ key_actions('delete_key')
 
 })

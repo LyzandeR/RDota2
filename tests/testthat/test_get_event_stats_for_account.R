@@ -3,6 +3,7 @@ context("test get_event_stats_for_account is working")
 test_that('function fails if no key has been set', {
 
  testthat::skip_on_cran()
+ testthat::skip_on_travis()
 
  #fails if no key is provided and key has not been set
  expect_error(get_event_stats_for_account(eventid = 65006,
@@ -37,5 +38,8 @@ test_that('function fails if no key has been set', {
 
  #make sure function returned a results list
  expect_true(is.list(get_event_stats_for_account(eventid = 65006, accountid = 89550641)$content))
+
+ #delete key
+ key_actions('delete_key')
 
 })

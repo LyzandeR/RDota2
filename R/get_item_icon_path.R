@@ -34,7 +34,8 @@
 #'
 #' @export
 get_item_icon_path <- function(iconname,
-                               icontype = '0',
+                               icontype = c('0', '1', '3'),
+                               dota_id = 570,
                                language = 'en',
                                key = NULL) {
 

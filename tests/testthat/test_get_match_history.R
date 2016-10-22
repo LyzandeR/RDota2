@@ -2,7 +2,8 @@ context("test get_match_history is working")
 
 test_that('function get_match_history works properly', {
 
- testthat::skip_on_cran()
+ skip_on_cran()
+ skip_on_travis()
 
  #fails if no key is provided and key has not been set
  expect_error(get_match_history(language = 'en',
@@ -16,7 +17,7 @@ test_that('function get_match_history works properly', {
               NA)
 
  #make sure url contains the right path
- expect_true(grepl('GetHeroes',
+ expect_true(grepl('GetMatchHistory',
                    get_match_history()$url))
 
  #make sure response received i.e. api working
@@ -30,5 +31,8 @@ test_that('function get_match_history works properly', {
 
  #make sure function returned a results list
  expect_true(is.list(get_match_history()$content))
+
+ #delete key
+ key_actions('delete_key')
 
 })

@@ -4,10 +4,12 @@
 \alias{print.dota_api}
 \title{print method for dota_api class}
 \usage{
-\method{print}{dota_api}(x)
+\method{print}{dota_api}(x, ...)
 }
 \arguments{
 \item{x}{A dota_api object.}
+
+\item{...}{further arguments passed to or from other methods. See ?print.}
 }
 \value{
 Prints the content element of the dota_api list.

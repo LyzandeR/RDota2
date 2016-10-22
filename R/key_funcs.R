@@ -4,21 +4,42 @@
 
 # Set key to environment
 register_key <- function(value) {
+
+ #set key
  .RdotaEnv$key <- value
  if (!is.null(value) | nzchar(value)) message('Key set successfully')
+
+ ##return
  invisible(value)
+
 }
 
 # Get key from environment
 get_key <- function() {
+
+ #just return key
  .RdotaEnv$key
+
 }
 
 #delete key from environment
 delete_key <- function() {
+
+ #message to return if key not set
+ if (is.null(get_key())) {
+  message('No key was set - Nothing to delete')
+  return(invisible(NULL))
+ }
+
+ #delete key
  rm('key', envir = .RdotaEnv)
+
+ #check if key has been successfully deleted and return message
  if (is.null(get_key())) message('Key deleted successfully')
+
+ #return
  invisible(NULL)
+
 }
 
 #' This function makes the key accessible to all functions.
@@ -58,6 +79,10 @@ key_actions <- function(action = c('register_key', 'get_key', 'delete_key'), val
 
  #make sure right operation was provided
  action <- match.arg(action)
+
+ if (action == 'register_key' & is.null(value)) {
+  stop('if action is register_key, a value (key) must be provided')
+ }
 
  if (action == 'register_key') {
   return(register_key(value))

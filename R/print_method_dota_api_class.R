@@ -7,17 +7,18 @@
 #' three elements containing the request url and the response apart from the content.
 #'
 #' @param x A dota_api object.
+#' @param ...	further arguments passed to or from other methods. See ?print.
 #'
 #' @return Prints the content element of the dota_api list.
 #'
 #' @export
-print.dota_api <- function(x) {
+print.dota_api <- function(x, ...) {
 
  #print a message
  cat("<RDota2 ", x$url, ">\n\n", sep = "")
 
  #print the content
- print(x$content)
+ print(x$content, ...)
 
  #return the object
  invisible(x)

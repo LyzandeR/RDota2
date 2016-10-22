@@ -45,6 +45,10 @@ data.frame is a hero and the following columns are included:
   \item \strong{localized_name:} Name of the hero in-game.
 }
 }
+\section{Steam API Documentation}{
+
+ \url{https://wiki.teamfortress.com/wiki/WebAPI/GetHeroes}
+}
 \examples{
 \dontrun{
 get_heroes(language = 'en', key = NULL)

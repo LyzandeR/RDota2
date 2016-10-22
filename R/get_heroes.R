@@ -22,6 +22,9 @@
 #' get_heroes(language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
+#' @section Steam API Documentation:
+#'  \url{https://wiki.teamfortress.com/wiki/WebAPI/GetHeroes}
+#'
 #' @inheritParams get_response
 #' @inheritParams get_event_stats_for_account
 #'
