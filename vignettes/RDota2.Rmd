@@ -30,7 +30,7 @@ In order to register a key on R you need to use the `key_actions` function in th
 
 ```{R, eval = NOT_CRAN}
 #load installed package 
-devtools::load_all()
+library(RDota2)
 
 #register key on R. xxxxxx is the key you received from Steam.
 key_actions(action = 'register_key', value = 'xxxxxxxx')
