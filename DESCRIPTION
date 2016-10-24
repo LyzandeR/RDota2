@@ -1,17 +1,22 @@
 Package: RDota2
 Type: Package
-Title: An R Web API Client for Valve's Dota2
+Title: An R Steam API Client for Valve's Dota2
 Version: 0.1.6
 Authors@R: person("Theo", 
                   "Boutaris", 
                   email = "teoboot2007@hotmail.com", 
                   role = c("aut", "cre", "cph"))
+URL: https://github.com/LyzandeR/RDota2                 
+BugReports: https://github.com/LyzandeR/RDota2/issues
 Depends: R (>= 3.2.0)
 Imports: httr,
          jsonlite
-Description: This is an R Web Api Client for Valve's Dota2, which can be easily
+Description: This is an R Api Client for Valve's Dota2, which can be easily
              used to download Dota2's data.
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
-Suggests: testthat
+Suggests: testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
