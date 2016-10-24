@@ -11,7 +11,9 @@ vignette: >
 
 ```{r, echo = FALSE}
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-knitr::opts_chunk$set(purl = NOT_CRAN)
+NOT_TRAVIS <- identical(tolower(Sys.getenv("TRAVIS")), "true")
+NOT_ALL <- NOT_CRAN & NOT_TRAVIS
+knitr::opts_chunk$set(purl = NOT_ALL)
 ```
 
 RDota2 is an R Steam API client for Valve's game Dota2. 
@@ -28,7 +30,7 @@ The typical way of working with RDota2 is to register a key on R (**once in ever
 
 In order to register a key on R you need to use the `key_actions` function in the following way:
 
-```{R, eval = NOT_CRAN}
+```{R, eval = NOT_ALL}
 #load installed package 
 library(RDota2)
 
@@ -46,7 +48,7 @@ Instead of specifying the key on your console / script (where it would be visibl
 
 So, the best practice would be to register your key in the following way:
 
-```{R, eval = NOT_CRAN}
+```{R, eval = NOT_ALL}
 #load installed package 
 library(RDota2)
 
@@ -121,7 +123,7 @@ The above are true for all the get_* functions, so they will not be analysed in 
 demonstration that follows.
 
 ### get_league_listing 
-```{R, echo = FALSE, eval = NOT_CRAN}
+```{R, echo = FALSE, eval = NOT_ALL}
 key_actions('register_key', value = Sys.getenv('RDota_KEY'))
 ```
 `get_league_listing` returns information about Dota TV-supported leagues 
