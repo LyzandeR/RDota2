@@ -329,7 +329,7 @@ cluster: The server cluster (used for downloading replays).
 
 Steam API Documentation: [GetMatchDetails](https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails)
 
-```{R}
+```{R, eval = NOT_ALL}
 #match list contains information about both players and the match
 match_details <- get_match_details(match_id = 2686721815)$content
 
