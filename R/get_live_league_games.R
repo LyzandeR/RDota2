@@ -5,9 +5,9 @@
 #' A list will be returned that contains three elements. The content (a huge list with all the
 #' games), the url and the response received from the api.
 #'
-#' The content element of the list contains information about the live league games.
-#' Each element of the content list is a game. Each game consists of the following sections
-#' (list elements):
+#' The content element of the list contains a games list  which has information about the
+#' live league games. Each element of the games list is a game. Each game consists of the
+#' following sections (list elements):
 #'
 #' \itemize{
 #'   \item \strong{players:} A list of lists containing information about the players.
@@ -55,7 +55,7 @@ get_live_league_games <- function(dota_id = 570, language = 'en', key = NULL) {
  dota_result <- get_response(dota_id, 'GetLiveLeagueGames', 'IDOTA2Match', 1, args)
 
  #remove some unnecessary levels
- dota_result$content <- dota_result$content[[1]][[1]]
+ dota_result$content <- dota_result$content[[1]]
 
  #return
  dota_result

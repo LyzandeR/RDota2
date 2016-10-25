@@ -33,10 +33,10 @@ user needs to work with multiple keys.}
 A dota_api object containing the elements described in the details.
 }
 \description{
-Player information about a specific match ID.
+Player and Game information about a specific match ID.
 }
 \details{
-A list will be returned that contains four elements. The content_player, the content_game,
+A list will be returned that contains three elements. The content,
 the url and the response received from the api.
 
 The content element is a list that contains information about the players participating in

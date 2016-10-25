@@ -32,8 +32,10 @@ In order to register a key on R you need to use the `key_actions` function in th
 
 ```{R, eval = NOT_ALL}
 #load installed package 
-library(RDota2)
+devtools::load_all()
+```
 
+```{R, eval = FALSE}
 #register key on R. xxxxxx is the key you received from Steam.
 key_actions(action = 'register_key', value = 'xxxxxxxx')
 ```
@@ -49,9 +51,6 @@ Instead of specifying the key on your console / script (where it would be visibl
 So, the best practice would be to register your key in the following way:
 
 ```{R, eval = NOT_ALL}
-#load installed package 
-library(RDota2)
-
 #register key on R. Sys.getenv('RDota_KEY') will retrieve the value of the  
 #RDota_KEY environment variable which is saved in your .Renviron file.
 key_actions(action = 'register_key', value = Sys.getenv('RDota_KEY'))
@@ -62,6 +61,18 @@ head(heroes$content)
 ```
 
 Each of the `get_*` family functions has a key argument which should only be used if you work with multiple keys. 
+
+#### Other Key Actions
+
+Other key actions include retrieving a key (to make sure it has been set for example) or deleting
+the key:
+
+```{R, eval = FALSE}
+#retrieve key
+key_actions('get_key')
+#delete key
+key_actions('delete_key')
+```
 
 ## get_* Family Funtions
 
@@ -123,14 +134,211 @@ The above are true for all the get_* functions, so they will not be analysed in 
 demonstration that follows.
 
 ### get_league_listing 
-```{R, echo = FALSE, eval = NOT_ALL}
-key_actions('register_key', value = Sys.getenv('RDota_KEY'))
+
+`get_league_listing` returns information about Dota TV-supported leagues. The function does not require any 
+extra arguments and outputs a data.frame with the following columns:
+
+* name: The league name.
+* leagueid: The ID of the league (unique).
+* description: A description containing information about the league.
+* tournament_url: The website of the link.
+* itemdef: Not documented on the API.
+
+Steam API Documentation: [GetLeagueListing](https://wiki.teamfortress.com/wiki/WebAPI/GetLeagueListing)
+
+```{R, eval = NOT_ALL}
+str(get_league_listing()$content)
 ```
-`get_league_listing` returns information about Dota TV-supported leagues 
+
+### get_live_league_games
+
+`get_live_league_games` returns information about the live league games. The function does not require any 
+extra arguments and outputs a list (called games), of which each element is a game. Each game contains the following
+information (some might be missing for some games):
+
+* players: A list of lists containing information about the players.
+* radiant_team: A list with information about the radiant team.
+* dire_team: A list with information about the dire team..
+* lobby_id: The lobby id.
+* match_id: The match id.
+* spectators: The number of spectators.
+* series_id: The series id.
+* game_number: The game number.
+* league_id: The league id.
+* stream_delay_s: The stream delay in secs.
+* radiant_series_wins: Radiant series wins.
+* dire_series_wins: Dire series wins.
+* series_type: Series type.
+* league_series_id: The league series id.
+* league_game_id: The league game id.
+* stage_name: The name of the stage.
+* league_tier: League tier.
+* scoreboard: A huge list containing scoreboard information.
+
+Steam API Documentation: [GetLiveLeagueGames](https://wiki.teamfortress.com/wiki/WebAPI/GetLiveLeagueGames)
+
+```{R, eval = FALSE}
+str(get_live_league_games()$content$games[[1]])
+```
+```{R, eval = FALSE}
+#### List of 17
+##  $ players            :List of 11
+##   ..$ :List of 4
+##   .. ..$ account_id: int 292934088
+##   .. ..$ name      : chr "FACEIT.com | Shannon Bot"
+##   .. ..$ hero_id   : int 0
+##   .. ..$ team      : int 4
+##   ..$ :List of 4
+##   .. ..$ account_id: int 124344565
+##   .. ..$ name      : chr "Ryadovoi Lebys"
+##   .. ..$ hero_id   : int 91
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 374473137
+##   .. ..$ name      : chr "<U+041D><U+0410><U+0421><U+0415><U+041A><U+041E><U+041C><U+042B><U+0428>""| __truncated__
+##   .. ..$ hero_id   : int 90
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 53178236
+##   .. ..$ name      : chr "Sedoy"
+##   .. ..$ hero_id   : int 18
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 84692724
+##   .. ..$ name      : chr "PANDA"
+##   .. ..$ hero_id   : int 110
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 86840554
+##   .. ..$ name      : chr "tmw"
+##   .. ..$ hero_id   : int 15
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 123787524
+##   .. ..$ name      : chr "Shachlo"
+##   .. ..$ hero_id   : int 60
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 159020918
+##   .. ..$ name      : chr "RodjER"
+##   .. ..$ hero_id   : int 37
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 148096933
+##   .. ..$ name      : chr "number0"
+##   .. ..$ hero_id   : int 47
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 11550182
+##   .. ..$ name      : chr "VANSKOR"
+##   .. ..$ hero_id   : int 69
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 86817707
+##   .. ..$ name      : chr "72293768"
+##   .. ..$ hero_id   : int 82
+##   .. ..$ team      : int 1
+##  $ radiant_team       :List of 4
+##   ..$ team_name: chr "FlipSid3 Tactics"
+##   ..$ team_id  : int 2790766
+##   ..$ team_logo: num 2.78e+17
+##   ..$ complete : logi TRUE
+##  $ lobby_id           : num 2.48e+16
+##  $ match_id           : num 2.73e+09
+##  $ spectators         : int 1256
+##  $ series_id          : int 0
+##  $ game_number        : int 0
+##  $ league_id          : int 5027
+##  $ stream_delay_s     : int 300
+##  $ radiant_series_wins: int 0
+##  $ dire_series_wins   : int 0
+##  $ series_type        : int 0
+##  $ league_series_id   : int 0
+##  $ league_game_id     : int 0
+##  $ stage_name         : chr ""
+##  $ league_tier        : int 3
+##  $ scoreboard         :List of 4
+##   ..$ duration            : num 1035
+##   ..$ roshan_respawn_timer: int 377
+##   ..$ radiant             :List of 11
+##   .. ..$ score         : int 13
+##   .. ..$ tower_state   : int 1983
+##   .. ..$ barracks_state: int 63
+##   .. ..$ picks         :List of 5
+## truncated...
+```
+
+### get_match_details
+
+`get_match_details` provides information about the game and the players participating in a specific
+match. The function requires a `match_id` to be provided. The function ouputs a list which contains
+information about the players and the match. The first element of the content list contains
+information about the players. The following details are included:
+
+* account_id: The player's account id.
+* player_slot: A player's slot is returned via an 8-bit unsigned integer. The first bit represent the player's team, false if Radiant and true if dire. The final three bits represent the player's position in that team, from 0-4.
+* hero_id: The hero id.
+* item_0: Top-left inventory item.
+* item_1: Top-center inventory item.
+* item_2: Top-right inventory item.
+* item_3: Bottom-left inventory item.
+* item_4: Bottom-center inventory item.
+* item_5: Bottom-right inventory item.
+* kills: Number of times player killed.
+* deaths: Number of times player died.
+* assists: Number of assists player achieved.
+* leaver_status: Integer from 0-6. Check API documentation.
+* last_hits: Number of last hits.
+* denies: Number of denies.
+* level: Hero level at the end of game.
+* xp_per_min: Xp per minute gained.
+* hero_damage: Total damage dealt to heroes.
+* tower_damage: Total damage dealt to towers.
+* hero_healing: Total health healed on heroes.
+* gold: Total gold left at the end of game.
+* gold_spent: Total gold spent.
+* scaled_hero_damage: Undocumented. Possibly damage after armour.
+* scaled_tower_damage: Undocumented.
+* scaled_hero_healing: Undocumented.
+* ability_upgrades: A list of all abilities in order of upgrade.
 
 
+ The rest of the elements of the content list contain information about the match. The following
+ details are included:
 
+* radiant_win: Boolean. Whether radiant won or not.
+* duration: The duration of a game in seconds.
+* pre_game_duration: The pre game duration.
+* start_time: Unix Timestamp of when the game began.
+* match_id: The match's unique id.
+* match_seq_num: A sequence number. It represents the order matches were recorded.
+* tower_status_radiant: Tower Status. Check API documentation.
+* barracks_status_dire: Same as above.
+cluster: The server cluster (used for downloading replays).
+* first_blood_time: Time in seconds when the first blood occured.
+* lobby_type: Type of lobby.
+* human_players: Number of human players.
+* leagueid: The league id.
+* positive_votes: Number of positive votes.
+* negative_votes: Number of negative votes.
+* game_mode: Game mode.
+* flags: Undocumented.
+* engine: 0 - source1, 1 - source 2.
+* radiant_score: Undocumented.
+* dire_score: Undocumented.
 
+Steam API Documentation: [GetMatchDetails](https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails)
 
+```{R}
+#match list contains information about both players and the match
+match_details <- get_match_details(match_id = 2686721815)$content
 
+#match_details[[1]] is a list with all the players - usually 10
+#match_details[[1]][[1]] is just one of the 10 players
+str(match_details[[1]][[1]])
 
+#information about the match
+str(match_details[-1])
+```
+
+### get_match_history

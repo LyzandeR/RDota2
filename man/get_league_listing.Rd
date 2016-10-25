@@ -39,11 +39,11 @@ received from the api.
 The content is probably the most useful part for the user since it is a data.frame containing the
 information about the DotaTV-supported leagues. It consists of the five following columns:
 \itemize{
-  \item \strong{leagues:} The leagues supported in-game via DotaTV.
   \item \strong{name:} The league name.
   \item \strong{leagueid:} The ID of the league (unique).
   \item \strong{description:} A description containing information about the league.
   \item \strong{tournament_url:} The website of the link.
+  \item \strong{itemdef:} Not documented on the API.
 }
 }
 \section{Steam API Documentation}{
