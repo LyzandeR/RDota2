@@ -11,7 +11,7 @@ vignette: >
 
 ```{r, echo = FALSE}
 NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
-NOT_TRAVIS <- identical(tolower(Sys.getenv("TRAVIS")), "true")
+NOT_TRAVIS <- !identical(tolower(Sys.getenv("TRAVIS")), "true")
 NOT_ALL <- NOT_CRAN & NOT_TRAVIS
 knitr::opts_chunk$set(purl = NOT_ALL)
 ```
