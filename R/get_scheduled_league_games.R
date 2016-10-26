@@ -54,12 +54,12 @@ get_scheduled_league_games <- function(date_min  = NULL,
 
  #make sure dates are in the right format
  if (!is.null(date_min)) {
-  min_date <- as.numeric(as.POSIXct(date_min, tz = tz))
+  date_min <- as.numeric(as.POSIXct(date_min, tz = tz))
   if (is.na(date_min)) stop('date_min not in the right format. It needs to be yyyy-mm-dd HH:MM:SS')
  }
  if (!is.null(date_max)) {
   date_max <- as.numeric(as.POSIXct(date_max, tz = tz))
-  if (is.na(date_max)) stop('max_date not in the right format. It needs to be yyyy-mm-dd HH:MM:SS')
+  if (is.na(date_max)) stop('date_max not in the right format. It needs to be yyyy-mm-dd HH:MM:SS')
  }
 
  #get query arguments

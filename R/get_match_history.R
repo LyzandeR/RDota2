@@ -1,32 +1,23 @@
 #' A list of Matches
 #'
-#' Alist of matches based on various parameters.
+#' A list of matches based on various parameters.
 #'
 #' A list will be returned that contains three elements. The content, the url and the
 #' response received from the api.
 #'
-#' The content element of the list is a list that contains information about the matches.
-#' Each element of the matches list is a game. Each game consists of a list of (some) of
+#' The content element of the list contains a list called matches.
+#' Each element of matches list is a match. Each match contains
 #' the following sections:
 #'
 #' \itemize{
-#'   \item \strong{players:} A list of lists containing information about the players.
-#'   \item \strong{lobby_id:} The lobby id.
 #'   \item \strong{match_id:} The match id.
-#'   \item \strong{spectators:} The number of spectators.
-#'   \item \strong{series_id:} The series id.
-#'   \item \strong{game_number:} The game number.
-#'   \item \strong{league_id:} The league id.
-#'   \item \strong{stream_delay_s:} The stream delay in secs.
-#'   \item \strong{radiant_series_wins:} Radiant series wins.
-#'   \item \strong{dire_series_wins:} Dire series wins.
-#'   \item \strong{series_type:} Series type.
-#'   \item \strong{league_series_id:} The league series id.
-#'   \item \strong{league_game_id:} The league game id.
-#'   \item \strong{stage_name:} The name of the stage.
-#'   \item \strong{league_tier:} League tier.
-#'   \item \strong{scoreboard:} A huge list containing scoreboard information. Scoreboard might
-#'   be missing from some of the games.
+#'   \item \strong{match_seq_num:}A sequence number, representing the order in which
+#'   matches were recorded.
+#'   \item \strong{start_time:} UNIX timestamp of when the game began.
+#'   \item \strong{lobby_type:} Check the API Documentation.
+#'   \item \strong{radiant_team_id:} Radiant team id.
+#'   \item \strong{dire_team_id:} Dire team id.
+#'   \item \strong{players:} A list containing information about the players.
 #' }
 #'
 #' @param hero_id (optional) The hero id. A list of hero ids can be found
@@ -61,9 +52,9 @@
 #' \item 3 - Very High
 #' }
 #'
-#' @param date_min (optional) Minimum date range for returned matches (Unix Timestamp).
+#' @param date_min (optional) Minimum date range for returned matches (yyyy-mm-dd HH:MM:SS).
 #'
-#' @param date_max (optional) Maximum date range for returned matches (Unix Timestamp).
+#' @param date_max (optional) Maximum date range for returned matches (yyyy-mm-dd HH:MM:SS).
 #'
 #' @param min_players (optional) Minimum number of players in match.
 #'
@@ -82,6 +73,7 @@
 #' @examples
 #' \dontrun{
 #' get_match_history(matches_requested = 2)
+#' get_match_history(matches_requested = 2, date_min = '2015-01-01 16:00:00', hero_id = 1)
 #' get_match_history(language = 'en', key = NULL)
 #' get_match_history(language = 'en', key = 'xxxxxxxxxxx')
 #' }
@@ -91,6 +83,7 @@
 #'
 #' @inheritParams get_response
 #' @inheritParams get_event_stats_for_account
+#' @inheritParams get_scheduled_league_games
 #'
 #' @export
 get_match_history <- function(hero_id = NULL,
@@ -104,17 +97,29 @@ get_match_history <- function(hero_id = NULL,
                               start_at_match_id = NULL,
                               matches_requested = NULL,
                               tournament_games_only = NULL,
+                              tz = '',
                               dota_id = 570,
                               language = 'en',
                               key = NULL) {
 
  #make sure if tournament_games_only is provided, it is binary
  if (!is.null(tournament_games_only)) {
-  if (!isTRUE(all.equal(0, as.numeric(tournament_games_only))) |
+  if (!isTRUE(all.equal(0, as.numeric(tournament_games_only))) &
       !isTRUE(all.equal(1, as.numeric(tournament_games_only)))) {
    stop('tournament_games_only needs to be either 0 or 1')
   }
  }
+
+ #make sure dates are in the right format
+ if (!is.null(date_min)) {
+  date_min <- as.numeric(as.POSIXct(date_min, tz = tz))
+  if (is.na(date_min)) stop('date_min not in the right format. It needs to be yyyy-mm-dd HH:MM:SS')
+ }
+ if (!is.null(date_max)) {
+  date_max <- as.numeric(as.POSIXct(date_max, tz = tz))
+  if (is.na(date_max)) stop('date_max not in the right format. It needs to be yyyy-mm-dd HH:MM:SS')
+ }
+
 
  #get query arguments
  args <- list(hero_id = hero_id,
@@ -135,7 +140,7 @@ get_match_history <- function(hero_id = NULL,
  dota_result <- get_response(dota_id, 'GetMatchHistory', 'IDOTA2Match', 1, args)
 
  #remove some unnecessary levels
- dota_result$content <- dota_result$content[[1]]
+ dota_result$content <- dota_result$content[[1]]['matches']
 
  #return
  dota_result

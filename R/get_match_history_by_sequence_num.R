@@ -1,6 +1,6 @@
 #' A list of Matches
 #'
-#' A list of matches based on various parameters defined by a sequence number.
+#' A list of matches ordered by a sequence number.
 #'
 #' A list will be returned that contains three elements. The content, the url and the
 #' response received from the api.

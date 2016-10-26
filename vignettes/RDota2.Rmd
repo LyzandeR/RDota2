@@ -342,3 +342,81 @@ str(match_details[-1])
 ```
 
 ### get_match_history
+
+`get_match_details` provides information about matches according to a number of parameters. The 
+available parameters are:
+
+* hero_id	- (optional) The hero id. A list of hero ids can be found via the get_heroes function.
+* game_mode	- (optional) The game mode:
+    * 0 - None
+    * 1 - All Pick
+    * 2 - Captain's Mode
+    * 3 - Random Draft
+    * 4 - Single Draft
+    * 5 - All Random
+    * 6 - Intro
+    * 7 - Diretide
+    * 8 - Reverse Captain's Mode
+    * 9 - The Greeviling
+    * 10 - Tutorial
+    * 11 - Mid Only
+    * 12 - Least Played
+    * 13 - New Player Pool
+    * 14 - Compendium Matchmaking
+    * 16 - Captain's Draft
+    * No 15 does not exist
+* skill	- (optional) Skill bracket.
+    * 0 - Any
+    * 1 - Normal
+    * 2 - High
+    * 3 - Very High
+* date_min	- (optional) Minimum date range for returned matches (yyyy-mm-dd HH:MM:SS).
+* date_max	 - (optional) Maximum date range for returned matches (yyyy-mm-dd HH:MM:SS).
+* min_players	- (optional) Minimum number of players in match.
+* account_id	- (optional) Account ID.
+* league_id	- (optional) League ID.
+* start_at_match_id - (optional) Matches equal or older than this ID.
+* matches_requested - (optional) Amount of matches to return (defaults to 25).
+* tournament_games_only	- (optional) Binary (0 or 1). Whether to return tournament matches.
+
+The content element of the list contains a list called matches.
+Each element of matches list is a match. Each match contains the following sections:
+
+* match_id: The match id.
+* match_seq_num:A sequence number, representing the order in which matches were recorded.
+* start_time: UNIX timestamp of when the game began.
+* lobby_type: Check the API Documentation.
+* radiant_team_id: Radiant team id.
+* dire_team_id: Dire team id.
+* players: A list containing information about the players.
+
+Steam API Documentation: [GetMatchHistory](https://wiki.teamfortress.com/wiki/WebAPI/GetMatchHistory)
+
+```{R, eval = NOT_ALL}
+#match list contains information about both players and the match
+match_details <- get_match_history(matches_requested = 2, 
+                                   date_min = '2015-01-01 16:00:00', 
+                                   hero_id = 1)$content
+
+#information about the first match
+str(match_details[[1]][[1]])
+```
+
+### get_match_history_by_sequence_num
+
+`get_match_history_by_sequence_num` returns information about matches ordered by a sequence number.
+The function can get start_at_match_seq_num and matches_requested as arguments but both are optional.
+The function returns  a list called matches. Each match follows exactly the same structure as 
+the match retrieved from `get_match_details`.    
+Please see that function for the exact details.
+
+Steam API Documentation: [GetMatchHistoryBySequenceNum](https://wiki.teamfortress.com/wiki/WebAPI/GetMatchHistoryBySequenceNum)
+
+```{R, eval = NOT_ALL}
+#get 1 match (out of 2) - match_seq_nums are 250 and 251 
+str(get_match_history_by_sequence_num(matches_requested = 2, 
+                                      start_at_match_seq_num = 250)$content$matches[[1]])
+```
+
+### get_scheduled_league_games
+`get_scheduled_league_games` returns a list of scheduled league games. 

@@ -7,8 +7,8 @@
 get_match_history(hero_id = NULL, game_mode = NULL, skill = NULL,
   date_min = NULL, date_max = NULL, min_players = NULL,
   account_id = NULL, league_id = NULL, start_at_match_id = NULL,
-  matches_requested = NULL, tournament_games_only = NULL, dota_id = 570,
-  language = "en", key = NULL)
+  matches_requested = NULL, tournament_games_only = NULL, tz = "",
+  dota_id = 570, language = "en", key = NULL)
 }
 \arguments{
 \item{hero_id}{(optional) The hero id. A list of hero ids can be found
@@ -43,9 +43,9 @@ No 15 does not exist}
 \item 3 - Very High
 }}
 
-\item{date_min}{(optional) Minimum date range for returned matches (Unix Timestamp).}
+\item{date_min}{(optional) Minimum date range for returned matches (yyyy-mm-dd HH:MM:SS).}
 
-\item{date_max}{(optional) Maximum date range for returned matches (Unix Timestamp).}
+\item{date_max}{(optional) Maximum date range for returned matches (yyyy-mm-dd HH:MM:SS).}
 
 \item{min_players}{(optional) Minimum number of players in match.}
 
@@ -58,6 +58,9 @@ No 15 does not exist}
 \item{matches_requested}{(optional) Amount of matches to return (defaults to 25).}
 
 \item{tournament_games_only}{(optional) Binary (0 or 1). Whether to return tournament matches.}
+
+\item{tz}{A time zone specification if date_min and/or date_max are used. See
+\link{as.POSIXct}. "" (default) is the current time zone and "GMT" is UTC.}
 
 \item{dota_id}{Can take one of three values.
 
@@ -82,34 +85,25 @@ user needs to work with multiple keys.}
 A dota_api object containing the elements described in the details.
 }
 \description{
-Alist of matches based on various parameters.
+A list of matches based on various parameters.
 }
 \details{
 A list will be returned that contains three elements. The content, the url and the
 response received from the api.
 
-The content element of the list is a list that contains information about the matches.
-Each element of the matches list is a game. Each game consists of a list of (some) of
+The content element of the list contains a list called matches.
+Each element of matches list is a match. Each match contains
 the following sections:
 
 \itemize{
-  \item \strong{players:} A list of lists containing information about the players.
-  \item \strong{lobby_id:} The lobby id.
   \item \strong{match_id:} The match id.
-  \item \strong{spectators:} The number of spectators.
-  \item \strong{series_id:} The series id.
-  \item \strong{game_number:} The game number.
-  \item \strong{league_id:} The league id.
-  \item \strong{stream_delay_s:} The stream delay in secs.
-  \item \strong{radiant_series_wins:} Radiant series wins.
-  \item \strong{dire_series_wins:} Dire series wins.
-  \item \strong{series_type:} Series type.
-  \item \strong{league_series_id:} The league series id.
-  \item \strong{league_game_id:} The league game id.
-  \item \strong{stage_name:} The name of the stage.
-  \item \strong{league_tier:} League tier.
-  \item \strong{scoreboard:} A huge list containing scoreboard information. Scoreboard might
-  be missing from some of the games.
+  \item \strong{match_seq_num:}A sequence number, representing the order in which
+  matches were recorded.
+  \item \strong{start_time:} UNIX timestamp of when the game began.
+  \item \strong{lobby_type:} Check the API Documentation.
+  \item \strong{radiant_team_id:} Radiant team id.
+  \item \strong{dire_team_id:} Dire team id.
+  \item \strong{players:} A list containing information about the players.
 }
 }
 \section{Steam API Documentation}{
@@ -119,6 +113,7 @@ the following sections:
 \examples{
 \dontrun{
 get_match_history(matches_requested = 2)
+get_match_history(matches_requested = 2, date_min = '2015-01-01 16:00:00', hero_id = 1)
 get_match_history(language = 'en', key = NULL)
 get_match_history(language = 'en', key = 'xxxxxxxxxxx')
 }
