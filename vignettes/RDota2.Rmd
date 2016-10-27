@@ -404,7 +404,7 @@ str(match_details[[1]][[1]])
 
 ### get_match_history_by_sequence_num
 
-`get_match_history_by_sequence_num` returns information about matches ordered by a sequence number.
+`get_match_history_by_sequence_num` provides information about matches ordered by a sequence number.
 The function can get start_at_match_seq_num and matches_requested as arguments but both are optional.
 The function returns  a list called matches. Each match follows exactly the same structure as 
 the match retrieved from `get_match_details`.    
@@ -419,4 +419,104 @@ str(get_match_history_by_sequence_num(matches_requested = 2,
 ```
 
 ### get_scheduled_league_games
-`get_scheduled_league_games` returns a list of scheduled league games. 
+
+`get_scheduled_league_games` returns a list of scheduled league games coming up. The function can
+get two optional arguments `date_min` and `date_max` specifying the time period in which to get the
+games. The function returns a list called games. Each game contains the following sections:
+
+* league_id: The unique league id.
+* game_id: A unique game id.
+* teams: A list of the participating teams.
+* starttime: Unix Timestamp of start time.
+* comment: Description of game.
+* final: Whether the game is a final or not.
+
+Steam API DOcumentation [GetScheduledLeagueGames](https://wiki.teamfortress.com/wiki/WebAPI/GetScheduledLeagueGames)
+
+```{R, eval = NOT_ALL}
+#no scheduled games at the time of writing
+str(get_scheduled_league_games()$content)
+```
+
+### get_team_info_by_team_id
+
+`get_team_info_by_team_id` provides informationa about a team given a team id. The function can
+get two optional arguments. `start_at_team_id` specifies the team id to start returning results
+from and `teams_requested` specifies the number of teams to return. The function returns a teams
+list of which each element is a match. The following information for each match is provided:
+
+* name: Team's name.
+* tag: The team's tag.
+* time_created: Unix timestamp of when the team was created.
+* calibration_games_remaining: : Undocumented (possibly number of games until a ranking score can be dedided).
+* logo: The UGC id for the team logo.
+* logo_sponsor: The UGC id for the team sponsor logo.
+* country_code: The team's ISO 3166-1 country-code.
+* url: Team's url which they provided.
+* games_played: Number of games played.
+* player_\*_account_id: Player's account id. Will be as many columns as players.
+* admin_account_id: Team's admin id.
+* league_id_\*: Undocumented (Probably leagues they participated in). Will be as many columns as leagues.
+* series_type: Series type.
+* league_series_id: The league series id.
+* league_game_id: The league game id.
+* stage_name: The name of the stage.
+* league_tier: League tier.
+* scoreboard: A huge list containing scoreboard information.
+
+Steam API Documentation: [GetTeamInfoByTeamID](https://wiki.teamfortress.com/wiki/WebAPI/GetTeamInfoByTeamID)
+
+```{R, eval = NOT_ALL}
+#information about one team
+str(get_team_info_by_team_id()$content$teams[[1]])
+```
+
+### get_tournament_player_stats
+
+`get_tournament_player_stats` provides information about tournament players' stats. It requires an
+`account_id` and optionally a `league_id` (only the international is supported i.e. 65006), a 
+`hero_id` or a `time_frame` (this is not functional just yet according to the Steam API 
+Documentation). The function returns a list that contains information about the matches the player
+played and information about global stats.
+
+Steam API Documentation: [GetTournamentPlayerStats](https://wiki.teamfortress.com/wiki/WebAPI/GetTournamentPlayerStats)
+
+```{R, eval = NOT_ALL}
+#request seems to be successful but I couldn't find an account id that returned player stats
+str(get_tournament_player_stats(account_id = 89550641, league_id = 65006)$content)
+```
+
+### get_top_live_game
+
+`get_top_live_game` returns the top live games by MMR. It requires a `partner` parameter 
+(not optional) but the API documentation does not specify what it actually is. Values of 1 or 2 or
+3 seem to be working. The function returns a `games_list` list which contains information about the top
+live games. The following categories are returns for each game. They are not documented on the API:
+
+* activate_time
+* deactivate_time
+* server_steam_id
+* lobby_id
+* league_id
+* lobby_type
+* game_time
+* delay
+* spectators
+* game_mode
+* average_mmr
+* sort_score
+* last_update_time
+* radiant_lead
+* radiant_score
+* dire_score
+* players
+* building_state
+
+Steam API Documentation: [GetTopLiveGame](https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame)
+
+```{R, eval = NOT_ALL}
+#information about one team
+str(get_top_live_game(partner = 1)$content$game_list[[1]])
+```
+
+### get_game_items
