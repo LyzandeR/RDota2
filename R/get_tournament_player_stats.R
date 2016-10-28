@@ -22,8 +22,6 @@
 #' @examples
 #' \dontrun{
 #' get_tournament_player_stats(account_id = 89550641, league_id = 65006)
-#' get_tournament_player_stats(language = 'en', key = NULL)
-#' get_tournament_player_stats(language = 'en', key = 'xxxxxxxxxxx')
 #' }
 #'
 #' @section Steam API Documentation:

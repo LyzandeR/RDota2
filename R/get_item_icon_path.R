@@ -20,12 +20,6 @@
 #'
 #' @return A dota_api object containing the elements described in the details.
 #'
-#' @examples
-#' \dontrun{
-#' get_item_icon_path(language = 'en', key = NULL)
-#' get_item_icon_path(language = 'en', key = 'xxxxxxxxxxx')
-#' }
-#'
 #' @section Steam API Documentation:
 #'  \url{https://wiki.teamfortress.com/wiki/WebAPI/GetItemIconPath}
 #'

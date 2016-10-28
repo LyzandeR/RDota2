@@ -49,8 +49,6 @@ of them have been documented in the api.
 \examples{
 \dontrun{
 get_event_stats_for_account(eventid = 65006, accountid = 89550641)
-get_event_stats_for_account(language = 'en', key = NULL)
-get_event_stats_for_account(language = 'en', key = 'xxxxxxxxxxx')
 }
 
 }

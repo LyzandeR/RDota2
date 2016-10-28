@@ -19,6 +19,7 @@
 #' @examples
 #' \dontrun{
 #' get_match_history_by_sequence_num()
+#' get_match_history_by_sequence_num(matches_requested = 2, start_at_match_seq_num = 250)
 #' get_match_history_by_sequence_num(language = 'en', key = NULL)
 #' get_match_history_by_sequence_num(language = 'en', key = 'xxxxxxxxxxx')
 #' }

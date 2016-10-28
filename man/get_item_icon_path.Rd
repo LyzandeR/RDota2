@@ -54,11 +54,4 @@ moment of writing). Please see the Steam API Documentation below.
 
  \url{https://wiki.teamfortress.com/wiki/WebAPI/GetItemIconPath}
 }
-\examples{
-\dontrun{
-get_item_icon_path(language = 'en', key = NULL)
-get_item_icon_path(language = 'en', key = 'xxxxxxxxxxx')
-}
-
-}
 

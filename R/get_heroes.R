@@ -18,6 +18,7 @@
 #'
 #' @examples
 #' \dontrun{
+#' get_heroes()
 #' get_heroes(language = 'en', key = NULL)
 #' get_heroes(language = 'en', key = 'xxxxxxxxxxx')
 #' }

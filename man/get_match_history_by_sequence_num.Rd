@@ -37,7 +37,7 @@ user needs to work with multiple keys.}
 A dota_api object containing the elements described in the details.
 }
 \description{
-A list of matches based on various parameters defined by a sequence number.
+A list of matches ordered by a sequence number.
 }
 \details{
 A list will be returned that contains three elements. The content, the url and the
@@ -54,6 +54,7 @@ function's help for detailed information.
 \examples{
 \dontrun{
 get_match_history_by_sequence_num()
+get_match_history_by_sequence_num(matches_requested = 2, start_at_match_seq_num = 250)
 get_match_history_by_sequence_num(language = 'en', key = NULL)
 get_match_history_by_sequence_num(language = 'en', key = 'xxxxxxxxxxx')
 }

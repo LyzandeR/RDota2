@@ -43,7 +43,8 @@ library(RDota2)
 key_actions(action = 'register_key', value = 'xxxxxxxx')
 ```
 
-Instead of specifying the key on your console / script (where it would be visible to anyone), good practice dictates to save it in an environment variable. This is a very easy to do process and you only need to do it once. The key will always be made easily available in your R sessions after this. In order to store the key in an environment variable you would need to do the following: 
+Instead of specifying the key on your console / script (where it would be visible to anyone), good practice dictates to save it in an environment variable. This is a very easy to do process and you only need to do it once. The key will always be made easily available in your R sessions after this. In order to store the key in an environment variable you would need to do the following (the following procedure has been
+taken from the Appendix of [this link](https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html)): 
 
 1. Identify your home directory. If you don't know which one it is just run `normalizePath("~/")` in the R console. 
 2. In your home directory create a file called .Renviron (it shouldn't have an extension, like for example .txt). If questioned, YES you do want to use a file name that begins with a dot. Note that by default dotfiles are usually hidden. But within RStudio, the file browser will make .Renviron visible and therefore easy to edit in the future.

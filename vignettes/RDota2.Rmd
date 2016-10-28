@@ -32,7 +32,7 @@ In order to register a key on R you need to use the `key_actions` function in th
 
 ```{R, eval = NOT_ALL}
 #load installed package 
-devtools::load_all()
+library(RDota2)
 ```
 
 ```{R, eval = FALSE}
@@ -40,7 +40,7 @@ devtools::load_all()
 key_actions(action = 'register_key', value = 'xxxxxxxx')
 ```
 
-Instead of specifying the key on your console / script (where it would be visible to anyone), good practice dictates to save it in an environment variable. This is a very easy to do process and you only need to do it once. The key will always be made easily available in your R sessions after this. In order to store the key in an environment variable you would need to do the following: 
+Instead of specifying the key on your console / script (where it would be visible to anyone), good practice dictates to save it in an environment variable. This is a very easy to do process and you only need to do it once. The key will always be made easily available in your R sessions after this. In order to store the key in an environment variable you would need to take the next steps (the following procedure has been taken from the appendix of [this link](https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html)): 
 
 1. Identify your home directory. If you don't know which one it is just run `normalizePath("~/")` in the R console. 
 2. In your home directory create a file called .Renviron (it shouldn't have an extension, like for example .txt). If questioned, YES you do want to use a file name that begins with a dot. Note that by default dotfiles are usually hidden. But within RStudio, the file browser will make .Renviron visible and therefore easy to edit in the future.
@@ -55,7 +55,7 @@ So, the best practice would be to register your key in the following way:
 #RDota_KEY environment variable which is saved in your .Renviron file.
 key_actions(action = 'register_key', value = Sys.getenv('RDota_KEY'))
 
-#now you can use any of the get_*family functions without specifying a key e.g.
+#now you can use any of the get_* family functions without specifying a key e.g.
 heroes <- get_heroes()
 head(heroes$content)
 ```
@@ -178,6 +178,7 @@ information (some might be missing for some games):
 Steam API Documentation: [GetLiveLeagueGames](https://wiki.teamfortress.com/wiki/WebAPI/GetLiveLeagueGames)
 
 ```{R, eval = FALSE}
+#information returned about the first game
 str(get_live_league_games()$content$games[[1]])
 ```
 ```{R, eval = FALSE}
@@ -405,7 +406,7 @@ str(match_details[[1]][[1]])
 ### get_match_history_by_sequence_num
 
 `get_match_history_by_sequence_num` provides information about matches ordered by a sequence number.
-The function can get start_at_match_seq_num and matches_requested as arguments but both are optional.
+The function can get `start_at_match_seq_num` and `matches_requested` as arguments but both are optional.
 The function returns  a list called matches. Each match follows exactly the same structure as 
 the match retrieved from `get_match_details`.    
 Please see that function for the exact details.
@@ -520,3 +521,99 @@ str(get_top_live_game(partner = 1)$content$game_list[[1]])
 ```
 
 ### get_game_items
+
+`get_game_items` returns information about Dota's items. The function does not require any 
+extra arguments and outputs a data.frame with the following columns:
+
+* id: Item's ID.
+* name: Item's tokenised name.
+* cost: Item's in-game cost.
+* secret_shop: Boolean. Whether it is sold in the secret shop.
+* side_shop: Boolean. Whether it is sold in the side shop.
+* recipe: Boolean. Whether it is a recipe.
+* localized_name: Localised name of item.
+
+Steam API Documentation: [GetGameItems](https://wiki.teamfortress.com/wiki/WebAPI/GetGameItems)
+
+```{R, eval = NOT_ALL}
+str(get_game_items()$content)
+```
+
+### get_heroes
+
+`get_heroes` returns information about Dota's heroes. The function does not require any 
+extra arguments and outputs a data.frame with the following columns:
+
+* name: Hero's name.
+* id: Hero's ID.
+* localized_name: Name of the hero in-game.
+
+Steam API Documentation: [GetHeroes](https://wiki.teamfortress.com/wiki/WebAPI/GetHeroes)
+
+```{R, eval = NOT_ALL}
+str(get_heroes()$content)
+```
+
+### get_rarities
+
+`get_rarities` returns information about Dota's item rarities. The function does not require any 
+extra arguments and outputs a data.frame with the following columns:
+
+* name: Internal rarity name.
+* id: Rarity's ID.
+* order: Logical order of rarities. From most common to most rare.
+* color: Hexadecimal RGB color of the rarity's name.
+* localized_name: In-game rarity name.
+
+Steam API Documentation: [GetRarities](https://wiki.teamfortress.com/wiki/WebAPI/GetRarities)
+
+```{R, eval = NOT_ALL}
+get_rarities()$content
+```
+
+### get_tournament_prize_pool
+
+`get_tournament_prize_pool` returns information about Dota's tournament prizes. The function can 
+take an optional `leagueid` argument (the league id to get the prize for) and outputs a data.frame 
+with the following columns:
+
+* prize_pool: The prize pool.
+* league_id: The league's id.
+
+Steam API Documentation: [GetTournamentPrizePool](https://wiki.teamfortress.com/wiki/WebAPI/GetTournamentPrizePool)
+
+```{R, eval = NOT_ALL}
+str(get_tournament_prize_pool()$content)
+```
+
+### get_event_stats_for_account
+
+`get_event_stats_for_account` returns an account's event stats. The function takes two arguments. An
+`eventid` argument (the league id) and an `accountid` argument (account id to get stats for). A list
+will be returned but the contents of it are not documented in the Steam API Documentation. The function 
+returns a list that contains:
+
+* event_points
+* actions
+
+Steam API Documentation: [GetEventStatsForAccount](https://wiki.teamfortress.com/wiki/WebAPI/GetEventStatsForAccount)
+
+```{R, eval = NOT_ALL}
+get_event_stats_for_account(eventid = 65006, accountid = 89550641)$content
+```
+
+### get_item_icon_path
+
+`get_item_icon_path` returns the icon path for an item. It requires an `iconname` (The item icon name) 
+and an `icontype` (the type of image - 0 is normal, 1 is large and 3 is ingame) argument. There is no
+documentation regarding this method in the Steam API Documentation at the time of writing.
+
+Steam API Documentation: [GetItemIconPath](https://wiki.teamfortress.com/wiki/WebAPI/GetItemIconPath)
+
+### BUGS / FEATURES
+
+If you would like to make any recommendations or give feedback or report a bug please visit the
+development site on [github](https://github.com/LyzandeR/RDota2).
+
+
+You made it to the end of the documentation! Thanks for reading! 

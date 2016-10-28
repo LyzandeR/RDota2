@@ -51,6 +51,7 @@ data.frame is a hero and the following columns are included:
 }
 \examples{
 \dontrun{
+get_heroes()
 get_heroes(language = 'en', key = NULL)
 get_heroes(language = 'en', key = 'xxxxxxxxxxx')
 }
