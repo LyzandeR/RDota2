@@ -11,8 +11,10 @@ BugReports: https://github.com/LyzandeR/RDota2/issues
 Depends: R (>= 3.2.0)
 Imports: httr,
          jsonlite
-Description: This is an R API Client for Valve's Dota2, which can be easily
-             used to download Dota2's data.
+Description: An R API Client for Valve's Dota2. RDota2 can be easily used 
+    to connect to the Steam API and retrieve data for Valve's popular video 
+    game Dota2. You can find out more about Dota2 at 
+    <http://store.steampowered.com/app/570/>.
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1

@@ -9,11 +9,4 @@ There were no ERRORs, WARNINGs or NOTEs
 
 ## Additional
 
-I can see when building on winbuilder on CRAN:
-
-Possibly mis-spelled words in DESCRIPTION:
-  API (3:19, 13:27)
-  Dota (3:42, 13:50, 14:31)
-
-None of them is actually mis-spelled as the package is an API client and Dota is the name of the game for which I built a package.
-
+Updated Description as per Uwe's suggestions

@@ -1,5 +1,9 @@
 # RDota2
 
+#### Released Version
+
+[![CRAN version](http://www.r-pkg.org/badges/version/RDota2)](https://cran.r-project.org/package=RDota2)
+
 #### Build Status
 
 [![Travis-CI Build Status](https://travis-ci.org/LyzandeR/RDota2.svg?branch=master)](https://travis-ci.org/LyzandeR/RDota2)
@@ -70,8 +74,8 @@ Each of the `get_*` family functions has a key argument which should only be use
 
 ## Links
    
-To find out about the Steam API Documentation you can visit [Steam](https://steamcommunity.com/linkfilter/?url=http://wiki.teamfortress.com/wiki/WebAPI)
+To read the tutorial and documentation for RDota2 please visit [RDota2](https://cran.r-project.org/web/packages/RDota2/vignettes/RDota2.html).
 
+To find out about the Steam API Documentation you can visit [Steam](https://steamcommunity.com/linkfilter/?url=http://wiki.teamfortress.com/wiki/WebAPI).
 
-
-
+To see the released version you can visit [CRAN](https://cran.r-project.org/package=RDota2).
