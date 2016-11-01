@@ -14,6 +14,12 @@ This is an R Steam API client specifically designed for Valve's game Dota2.
 
 ## Installation
 
+To install the latest released version from CRAN you just need to run on your console:
+
+```r
+install.packages('RDota2')
+```
+
 To install the development version you need to have the `devtools` package installed. To install devtools type in your console: `install.packages('devtools')`.
 
 Then to install RDota2 run the following on your console:
@@ -21,8 +27,6 @@ Then to install RDota2 run the following on your console:
 ```R
 devtools::install_github('lyzander/RDota2')
 ```
-
-The package is planned to be released on CRAN in the future.
 
 ## Usage
 
