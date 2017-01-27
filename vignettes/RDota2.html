@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Theo Boutaris" />
+
+<meta name="date" content="2017-01-26" />
+
+<title>RDota2</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">RDota2</h1>
+<h4 class="author"><em>Theo Boutaris</em></h4>
+<h4 class="date"><em>2017-01-26</em></h4>
+
+
+
+<p>RDota2 is an R Steam API client for Valve’s game Dota2.</p>
+<p>In order to use the package you will need to have a Steam Key which you can get from <a href="https://steamcommunity.com/login/home/?goto=%2Fdev%2Fapikey">Steam Community</a>. You will also need a Steam account in order to request a key.</p>
+<div id="usage" class="section level2">
+<h2>Usage</h2>
+<p>The typical workflow of RDota2 would include registering a key on R and then using the get_* family functions to access the API.</p>
+<div id="registering-a-key-on-r" class="section level4">
+<h4>Registering a key on R</h4>
+<p>The typical way of working with RDota2 is to register a key on R (<strong>once in every section</strong>) and then that key will automatically be used within each one of the get_* family functions.</p>
+<p>In order to register a key on R you need to use the <code>key_actions</code> function in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#load installed package </span>
+<span class="kw">library</span>(RDota2)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#register key on R. xxxxxx is the key you received from Steam.</span>
+<span class="kw">key_actions</span>(<span class="dt">action =</span> <span class="st">'register_key'</span>, <span class="dt">value =</span> <span class="st">'xxxxxxxx'</span>)</code></pre></div>
+<p>Instead of specifying the key on your console / script (where it would be visible to anyone), good practice dictates to save it in an environment variable. This is a very easy to do process and you only need to do it once. The key will always be made easily available in your R sessions after this. In order to store the key in an environment variable you would need to take the next steps (the following procedure has been taken from the appendix of <a href="https://cran.r-project.org/package=httr">Best practices for writing an API package</a>):</p>
+<ol style="list-style-type: decimal">
+<li>Identify your home directory. If you don’t know which one it is just run <code>normalizePath(&quot;~/&quot;)</code> in the R console.</li>
+<li>In your home directory create a file called .Renviron (it shouldn’t have an extension, like for example .txt). If questioned, YES you do want to use a file name that begins with a dot. Note that by default dotfiles are usually hidden. But within RStudio, the file browser will make .Renviron visible and therefore easy to edit in the future.</li>
+<li>In the .Renviron file type a line like <code>RDota_KEY=xxxxxxxx</code>, where RDota_KEY will be the name of the R environment variable and xxxxxxxx will be your individual Steam API Key. Make sure the last line in the file is empty (if it isnât R will silently fail to load the file). If youâre using an editor that shows line numbers, there should be two lines, where the second one is empty.</li>
+<li>Restart your R session if you were using one, since .Renviron is parsed at the start of an R session.</li>
+<li>Access the key on your R session using <code>Sys.getenv</code>.</li>
+</ol>
+<p>So, the best practice would be to register your key in the following way:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#register key on R. Sys.getenv('RDota_KEY') will retrieve the value of the  </span>
+<span class="co">#RDota_KEY environment variable which is saved in your .Renviron file.</span>
+<span class="kw">key_actions</span>(<span class="dt">action =</span> <span class="st">'register_key'</span>, <span class="dt">value =</span> <span class="kw">Sys.getenv</span>(<span class="st">'RDota_KEY'</span>))</code></pre></div>
+<pre><code>## Key set successfully</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#now you can use any of the get_* family functions without specifying a key e.g.</span>
+heroes &lt;-<span class="st"> </span><span class="kw">get_heroes</span>()
+<span class="kw">head</span>(heroes$content)</code></pre></div>
+<pre><code>##                           name id localized_name
+## 1       npc_dota_hero_antimage  1      Anti-Mage
+## 2            npc_dota_hero_axe  2            Axe
+## 3           npc_dota_hero_bane  3           Bane
+## 4    npc_dota_hero_bloodseeker  4    Bloodseeker
+## 5 npc_dota_hero_crystal_maiden  5 Crystal Maiden
+## 6    npc_dota_hero_drow_ranger  6    Drow Ranger</code></pre>
+<p>Each of the <code>get_*</code> family functions has a key argument which should only be used if you work with multiple keys.</p>
+</div>
+<div id="other-key-actions" class="section level4">
+<h4>Other Key Actions</h4>
+<p>Other key actions include retrieving a key (to make sure it has been set for example) or deleting the key:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#retrieve key</span>
+<span class="kw">key_actions</span>(<span class="st">'get_key'</span>)
+<span class="co">#delete key</span>
+<span class="kw">key_actions</span>(<span class="st">'delete_key'</span>)</code></pre></div>
+</div>
+</div>
+<div id="get_-family-funtions" class="section level2">
+<h2>get_* Family Funtions</h2>
+<p>The get_* family functions are the functions used to access the API. They map the following API methods:</p>
+<p>Dota 2 methods relating to match information:</p>
+<ul>
+<li>GetLeagueListing<br />
+Information about DotaTV-supported leagues.</li>
+<li>GetLiveLeagueGames<br />
+A list of in-progress league matches, as well as details of that match as it unfolds.</li>
+<li>GetMatchDetails<br />
+Information about a particular match.</li>
+<li>GetMatchHistory<br />
+A list of matches, filterable by various parameters.</li>
+<li>GetMatchHistoryBySequenceNum<br />
+A list of matches ordered by their sequence num.</li>
+<li>GetScheduledLeagueGames<br />
+A list of scheduled league games coming up.</li>
+<li>GetTeamInfoByTeamID<br />
+A list of all the teams set up in-game.</li>
+<li>GetTournamentPlayerStats<br />
+Stats about a particular player within a tournament.</li>
+<li>GetTopLiveGame</li>
+</ul>
+<p>Dota 2 methods relating to Dota 2 economy:</p>
+<ul>
+<li>GetGameItems<br />
+Dota 2 In-game items</li>
+<li>GetItemIconPath<br />
+</li>
+<li>GetHeroes<br />
+A list of heroes within Dota 2.</li>
+<li>GetRarities<br />
+Dota 2 item rarity list.</li>
+<li>GetTournamentPrizePool<br />
+The current prizepool for specific tournaments.</li>
+<li>GetEventStatsForAccount</li>
+</ul>
+<p>You can access the Steam API Documentation from <a href="https://wiki.teamfortress.com/wiki/WebAPI">this link</a>.</p>
+<p>All get_* functions have three common arguments that can be used:</p>
+<ul>
+<li>key - This is to be used only in the case of working with multiple keys. If you work with just one key please follow the procedure of using an R environment variable, which is described in detail above.</li>
+<li>language - This is the ISO639-1 code for all languages. You can select whichever you like. The default language is ‘en’ which corresponds to english. If the language chosen is not supported, english will be returned.</li>
+<li>dota_id - This can take just tree values according to the Dota App ID. 570 for Dota2, 816 for Dota internal test and 205790 for Dota 2 (beta) test. 570 is the default one.</li>
+</ul>
+<p>Moreover, all get_* functions will return a <code>dota_api</code> object that contains 3 elements:</p>
+<ul>
+<li>url - The request url (without showing the key).</li>
+<li>content - This is the useful element to the user, since it contains Dota2 data.</li>
+<li>response - This shows information about the response retrieved from steam like headers, status, cookies, date, etc.</li>
+</ul>
+<p>By default when printing a <code>dota_api</code> object <strong>only the content element will be printed on screen</strong>.</p>
+<p>The above are true for all the get_* functions, so they will not be analysed in detail in the individual function demonstration that follows.</p>
+<div id="get_league_listing" class="section level3">
+<h3>get_league_listing</h3>
+<p><code>get_league_listing</code> returns information about Dota TV-supported leagues. The function does not require any extra arguments and outputs a data.frame with the following columns:</p>
+<ul>
+<li>name: The league name.</li>
+<li>leagueid: The ID of the league (unique).</li>
+<li>description: A description containing information about the league.</li>
+<li>tournament_url: The website of the link.</li>
+<li>itemdef: Not documented on the API.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetLeagueListing">GetLeagueListing</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">get_league_listing</span>()$content)</code></pre></div>
+<pre><code>## 'data.frame':    1583 obs. of  5 variables:
+##  $ name          : chr  &quot;Dota 2 Just For Fun&quot; &quot;joinDOTA League Season 3&quot; &quot;Killing Spree: North America&quot; &quot;Wild Cards West&quot; ...
+##  $ leagueid      : int  1212 1640 25 2 3 4 5 6 7 8 ...
+##  $ description   : chr  &quot;64 of the best Brazilian amateur teams compete to become the winner of the first Dota 2 Just For Fun tournament. &quot; &quot;The global Dota 2 league for everyone. Featured are all of the matches from division 1 and 2. There are three leagues: Europe, &quot;| __truncated__ &quot;Killing Spree is a perpetual King of the Hill event featuring four premier teams from North America. Each team will battle thei&quot;| __truncated__ &quot;Watch eight of the best Dota 2 teams compete for a spot in The International&quot; ...
+##  $ tournament_url: chr  &quot;https://binarybeast.com/xDOTA21404228/&quot; &quot;http://www.joindota.com/en/leagues/&quot; &quot;http://neodota.com/?page_id=1389&quot; &quot;http://www.dota2.com/tournaments/international/&quot; ...
+##  $ itemdef       : int  10541 10742 15014 15015 15016 15018 15042 15047 15049 15051 ...</code></pre>
+</div>
+<div id="get_live_league_games" class="section level3">
+<h3>get_live_league_games</h3>
+<p><code>get_live_league_games</code> returns information about the live league games. The function does not require any extra arguments and outputs a list (called games), of which each element is a game. Each game contains the following information (some might be missing for some games):</p>
+<ul>
+<li>players: A list of lists containing information about the players.</li>
+<li>radiant_team: A list with information about the radiant team.</li>
+<li>dire_team: A list with information about the dire team..</li>
+<li>lobby_id: The lobby id.</li>
+<li>match_id: The match id.</li>
+<li>spectators: The number of spectators.</li>
+<li>series_id: The series id.</li>
+<li>game_number: The game number.</li>
+<li>league_id: The league id.</li>
+<li>stream_delay_s: The stream delay in secs.</li>
+<li>radiant_series_wins: Radiant series wins.</li>
+<li>dire_series_wins: Dire series wins.</li>
+<li>series_type: Series type.</li>
+<li>league_series_id: The league series id.</li>
+<li>league_game_id: The league game id.</li>
+<li>stage_name: The name of the stage.</li>
+<li>league_tier: League tier.</li>
+<li>scoreboard: A huge list containing scoreboard information.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetLiveLeagueGames">GetLiveLeagueGames</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#information returned about the first game</span>
+<span class="kw">str</span>(<span class="kw">get_live_league_games</span>()$content$games[[<span class="dv">1</span>]])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">#### List of 17
+##  $ players            :List of 11
+##   ..$ :List of 4
+##   .. ..$ account_id: int 292934088
+##   .. ..$ name      : chr &quot;FACEIT.com | Shannon Bot&quot;
+##   .. ..$ hero_id   : int 0
+##   .. ..$ team      : int 4
+##   ..$ :List of 4
+##   .. ..$ account_id: int 124344565
+##   .. ..$ name      : chr &quot;Ryadovoi Lebys&quot;
+##   .. ..$ hero_id   : int 91
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 374473137
+##   .. ..$ name      : chr &quot;&lt;U+041D&gt;&lt;U+0410&gt;&lt;U+0421&gt;&lt;U+0415&gt;&lt;U+041A&gt;&lt;U+041E&gt;&lt;U+041C&gt;&lt;U+042B&gt;&lt;U+0428&gt;&quot;&quot;| __truncated__
+##   .. ..$ hero_id   : int 90
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 53178236
+##   .. ..$ name      : chr &quot;Sedoy&quot;
+##   .. ..$ hero_id   : int 18
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 84692724
+##   .. ..$ name      : chr &quot;PANDA&quot;
+##   .. ..$ hero_id   : int 110
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 86840554
+##   .. ..$ name      : chr &quot;tmw&quot;
+##   .. ..$ hero_id   : int 15
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 123787524
+##   .. ..$ name      : chr &quot;Shachlo&quot;
+##   .. ..$ hero_id   : int 60
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 159020918
+##   .. ..$ name      : chr &quot;RodjER&quot;
+##   .. ..$ hero_id   : int 37
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 148096933
+##   .. ..$ name      : chr &quot;number0&quot;
+##   .. ..$ hero_id   : int 47
+##   .. ..$ team      : int 1
+##   ..$ :List of 4
+##   .. ..$ account_id: int 11550182
+##   .. ..$ name      : chr &quot;VANSKOR&quot;
+##   .. ..$ hero_id   : int 69
+##   .. ..$ team      : int 0
+##   ..$ :List of 4
+##   .. ..$ account_id: int 86817707
+##   .. ..$ name      : chr &quot;72293768&quot;
+##   .. ..$ hero_id   : int 82
+##   .. ..$ team      : int 1
+##  $ radiant_team       :List of 4
+##   ..$ team_name: chr &quot;FlipSid3 Tactics&quot;
+##   ..$ team_id  : int 2790766
+##   ..$ team_logo: num 2.78e+17
+##   ..$ complete : logi TRUE
+##  $ lobby_id           : num 2.48e+16
+##  $ match_id           : num 2.73e+09
+##  $ spectators         : int 1256
+##  $ series_id          : int 0
+##  $ game_number        : int 0
+##  $ league_id          : int 5027
+##  $ stream_delay_s     : int 300
+##  $ radiant_series_wins: int 0
+##  $ dire_series_wins   : int 0
+##  $ series_type        : int 0
+##  $ league_series_id   : int 0
+##  $ league_game_id     : int 0
+##  $ stage_name         : chr &quot;&quot;
+##  $ league_tier        : int 3
+##  $ scoreboard         :List of 4
+##   ..$ duration            : num 1035
+##   ..$ roshan_respawn_timer: int 377
+##   ..$ radiant             :List of 11
+##   .. ..$ score         : int 13
+##   .. ..$ tower_state   : int 1983
+##   .. ..$ barracks_state: int 63
+##   .. ..$ picks         :List of 5
+## truncated...</code></pre></div>
+</div>
+<div id="get_match_details" class="section level3">
+<h3>get_match_details</h3>
+<p><code>get_match_details</code> provides information about the game and the players participating in a specific match. The function requires a <code>match_id</code> to be provided. The function ouputs a list which contains information about the players and the match. The first element of the content list contains information about the players. The following details are included:</p>
+<ul>
+<li>account_id: The player’s account id.</li>
+<li>player_slot: A player’s slot is returned via an 8-bit unsigned integer. The first bit represent the player’s team, false if Radiant and true if dire. The final three bits represent the player’s position in that team, from 0-4.</li>
+<li>hero_id: The hero id.</li>
+<li>item_0: Top-left inventory item.</li>
+<li>item_1: Top-center inventory item.</li>
+<li>item_2: Top-right inventory item.</li>
+<li>item_3: Bottom-left inventory item.</li>
+<li>item_4: Bottom-center inventory item.</li>
+<li>item_5: Bottom-right inventory item.</li>
+<li>kills: Number of times player killed.</li>
+<li>deaths: Number of times player died.</li>
+<li>assists: Number of assists player achieved.</li>
+<li>leaver_status: Integer from 0-6. Check API documentation.</li>
+<li>last_hits: Number of last hits.</li>
+<li>denies: Number of denies.</li>
+<li>level: Hero level at the end of game.</li>
+<li>xp_per_min: Xp per minute gained.</li>
+<li>hero_damage: Total damage dealt to heroes.</li>
+<li>tower_damage: Total damage dealt to towers.</li>
+<li>hero_healing: Total health healed on heroes.</li>
+<li>gold: Total gold left at the end of game.</li>
+<li>gold_spent: Total gold spent.</li>
+<li>scaled_hero_damage: Undocumented. Possibly damage after armour.</li>
+<li>scaled_tower_damage: Undocumented.</li>
+<li>scaled_hero_healing: Undocumented.</li>
+<li>ability_upgrades: A list of all abilities in order of upgrade.</li>
+</ul>
+<p>The rest of the elements of the content list contain information about the match. The following details are included:</p>
+<ul>
+<li>radiant_win: Boolean. Whether radiant won or not.</li>
+<li>duration: The duration of a game in seconds.</li>
+<li>pre_game_duration: The pre game duration.</li>
+<li>start_time: Unix Timestamp of when the game began.</li>
+<li>match_id: The match’s unique id.</li>
+<li>match_seq_num: A sequence number. It represents the order matches were recorded.</li>
+<li>tower_status_radiant: Tower Status. Check API documentation.</li>
+<li>barracks_status_dire: Same as above. cluster: The server cluster (used for downloading replays).</li>
+<li>first_blood_time: Time in seconds when the first blood occured.</li>
+<li>lobby_type: Type of lobby.</li>
+<li>human_players: Number of human players.</li>
+<li>leagueid: The league id.</li>
+<li>positive_votes: Number of positive votes.</li>
+<li>negative_votes: Number of negative votes.</li>
+<li>game_mode: Game mode.</li>
+<li>flags: Undocumented.</li>
+<li>engine: 0 - source1, 1 - source 2.</li>
+<li>radiant_score: Undocumented.</li>
+<li>dire_score: Undocumented.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetMatchDetails">GetMatchDetails</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#match list contains information about both players and the match</span>
+match_details &lt;-<span class="st"> </span><span class="kw">get_match_details</span>(<span class="dt">match_id =</span> <span class="dv">2686721815</span>)$content
+
+<span class="co">#match_details[[1]] is a list with all the players - usually 10</span>
+<span class="co">#match_details[[1]][[1]] is just one of the 10 players</span>
+<span class="kw">str</span>(match_details[[<span class="dv">1</span>]][[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## List of 30
+##  $ account_id         : num 4.29e+09
+##  $ player_slot        : int 0
+##  $ hero_id            : int 106
+##  $ item_0             : int 54
+##  $ item_1             : int 0
+##  $ item_2             : int 145
+##  $ item_3             : int 48
+##  $ item_4             : int 185
+##  $ item_5             : int 11
+##  $ backpack_0         : int 0
+##  $ backpack_1         : int 0
+##  $ backpack_2         : int 0
+##  $ kills              : int 2
+##  $ deaths             : int 1
+##  $ assists            : int 16
+##  $ leaver_status      : int 0
+##  $ last_hits          : int 92
+##  $ denies             : int 3
+##  $ gold_per_min       : int 411
+##  $ xp_per_min         : int 461
+##  $ level              : int 17
+##  $ hero_damage        : int 8107
+##  $ tower_damage       : int 1425
+##  $ hero_healing       : int 0
+##  $ gold               : int 948
+##  $ gold_spent         : int 13620
+##  $ scaled_hero_damage : int 7420
+##  $ scaled_tower_damage: int 1058
+##  $ scaled_hero_healing: int 0
+##  $ ability_upgrades   :List of 17
+##   ..$ :List of 3
+##   .. ..$ ability: int 5603
+##   .. ..$ time   : int 141
+##   .. ..$ level  : int 1
+##   ..$ :List of 3
+##   .. ..$ ability: int 5605
+##   .. ..$ time   : int 295
+##   .. ..$ level  : int 2
+##   ..$ :List of 3
+##   .. ..$ ability: int 5604
+##   .. ..$ time   : int 324
+##   .. ..$ level  : int 3
+##   ..$ :List of 3
+##   .. ..$ ability: int 5603
+##   .. ..$ time   : int 385
+##   .. ..$ level  : int 4
+##   ..$ :List of 3
+##   .. ..$ ability: int 5603
+##   .. ..$ time   : int 489
+##   .. ..$ level  : int 5
+##   ..$ :List of 3
+##   .. ..$ ability: int 5606
+##   .. ..$ time   : int 560
+##   .. ..$ level  : int 6
+##   ..$ :List of 3
+##   .. ..$ ability: int 5603
+##   .. ..$ time   : int 646
+##   .. ..$ level  : int 7
+##   ..$ :List of 3
+##   .. ..$ ability: int 5605
+##   .. ..$ time   : int 850
+##   .. ..$ level  : int 8
+##   ..$ :List of 3
+##   .. ..$ ability: int 5605
+##   .. ..$ time   : int 1012
+##   .. ..$ level  : int 9
+##   ..$ :List of 3
+##   .. ..$ ability: int 5605
+##   .. ..$ time   : int 1264
+##   .. ..$ level  : int 10
+##   ..$ :List of 3
+##   .. ..$ ability: int 5606
+##   .. ..$ time   : int 1298
+##   .. ..$ level  : int 11
+##   ..$ :List of 3
+##   .. ..$ ability: int 5604
+##   .. ..$ time   : int 1635
+##   .. ..$ level  : int 12
+##   ..$ :List of 3
+##   .. ..$ ability: int 5604
+##   .. ..$ time   : int 1772
+##   .. ..$ level  : int 13
+##   ..$ :List of 3
+##   .. ..$ ability: int 5604
+##   .. ..$ time   : int 1909
+##   .. ..$ level  : int 14
+##   ..$ :List of 3
+##   .. ..$ ability: int 5002
+##   .. ..$ time   : int 2063
+##   .. ..$ level  : int 15
+##   ..$ :List of 3
+##   .. ..$ ability: int 5606
+##   .. ..$ time   : int 2149
+##   .. ..$ level  : int 16
+##   ..$ :List of 3
+##   .. ..$ ability: int 5002
+##   .. ..$ time   : int 2200
+##   .. ..$ level  : int 17</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#information about the match</span>
+<span class="kw">str</span>(match_details[-<span class="dv">1</span>])</code></pre></div>
+<pre><code>## List of 22
+##  $ radiant_win            : logi TRUE
+##  $ duration               : int 2016
+##  $ pre_game_duration      : int 75
+##  $ start_time             : int 1475527616
+##  $ match_id               : num 2.69e+09
+##  $ match_seq_num          : num 2.35e+09
+##  $ tower_status_radiant   : int 1844
+##  $ tower_status_dire      : int 4
+##  $ barracks_status_radiant: int 63
+##  $ barracks_status_dire   : int 3
+##  $ cluster                : int 137
+##  $ first_blood_time       : int 517
+##  $ lobby_type             : int 0
+##  $ human_players          : int 10
+##  $ leagueid               : int 0
+##  $ positive_votes         : int 0
+##  $ negative_votes         : int 0
+##  $ game_mode              : int 1
+##  $ flags                  : int 0
+##  $ engine                 : int 1
+##  $ radiant_score          : int 35
+##  $ dire_score             : int 10</code></pre>
+</div>
+<div id="get_match_history" class="section level3">
+<h3>get_match_history</h3>
+<p><code>get_match_details</code> provides information about matches according to a number of parameters. The available parameters are:</p>
+<ul>
+<li>hero_id - (optional) The hero id. A list of hero ids can be found via the get_heroes function.</li>
+<li>game_mode - (optional) The game mode:
+<ul>
+<li>0 - None</li>
+<li>1 - All Pick</li>
+<li>2 - Captain’s Mode</li>
+<li>3 - Random Draft</li>
+<li>4 - Single Draft</li>
+<li>5 - All Random</li>
+<li>6 - Intro</li>
+<li>7 - Diretide</li>
+<li>8 - Reverse Captain’s Mode</li>
+<li>9 - The Greeviling</li>
+<li>10 - Tutorial</li>
+<li>11 - Mid Only</li>
+<li>12 - Least Played</li>
+<li>13 - New Player Pool</li>
+<li>14 - Compendium Matchmaking</li>
+<li>16 - Captain’s Draft</li>
+<li>No 15 does not exist</li>
+</ul></li>
+<li>skill - (optional) Skill bracket.
+<ul>
+<li>0 - Any</li>
+<li>1 - Normal</li>
+<li>2 - High</li>
+<li>3 - Very High</li>
+</ul></li>
+<li>date_min - (optional) Minimum date range for returned matches (yyyy-mm-dd HH:MM:SS).</li>
+<li>date_max - (optional) Maximum date range for returned matches (yyyy-mm-dd HH:MM:SS).</li>
+<li>min_players - (optional) Minimum number of players in match.</li>
+<li>account_id - (optional) Account ID.</li>
+<li>league_id - (optional) League ID.</li>
+<li>start_at_match_id - (optional) Matches equal or older than this ID.</li>
+<li>matches_requested - (optional) Amount of matches to return (defaults to 25).</li>
+<li>tournament_games_only - (optional) Binary (0 or 1). Whether to return tournament matches.</li>
+</ul>
+<p>The content element of the list contains a list called matches. Each element of matches list is a match. Each match contains the following sections:</p>
+<ul>
+<li>match_id: The match id.</li>
+<li>match_seq_num:A sequence number, representing the order in which matches were recorded.</li>
+<li>start_time: UNIX timestamp of when the game began.</li>
+<li>lobby_type: Check the API Documentation.</li>
+<li>radiant_team_id: Radiant team id.</li>
+<li>dire_team_id: Dire team id.</li>
+<li>players: A list containing information about the players.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetMatchHistory">GetMatchHistory</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#match list contains information about both players and the match</span>
+match_details &lt;-<span class="st"> </span><span class="kw">get_match_history</span>(<span class="dt">matches_requested =</span> <span class="dv">2</span>, 
+                                   <span class="dt">date_min =</span> <span class="st">'2015-01-01 16:00:00'</span>, 
+                                   <span class="dt">hero_id =</span> <span class="dv">1</span>)$content
+
+<span class="co">#information about the first match</span>
+<span class="kw">str</span>(match_details[[<span class="dv">1</span>]][[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## List of 7
+##  $ match_id       : num 2.94e+09
+##  $ match_seq_num  : num 2.57e+09
+##  $ start_time     : int 1485471315
+##  $ lobby_type     : int 0
+##  $ radiant_team_id: int 0
+##  $ dire_team_id   : int 0
+##  $ players        :List of 10
+##   ..$ :List of 3
+##   .. ..$ account_id : int 83518920
+##   .. ..$ player_slot: int 0
+##   .. ..$ hero_id    : int 26
+##   ..$ :List of 3
+##   .. ..$ account_id : int 89351823
+##   .. ..$ player_slot: int 1
+##   .. ..$ hero_id    : int 3
+##   ..$ :List of 3
+##   .. ..$ account_id : int 102233244
+##   .. ..$ player_slot: int 2
+##   .. ..$ hero_id    : int 98
+##   ..$ :List of 3
+##   .. ..$ account_id : int 124867826
+##   .. ..$ player_slot: int 3
+##   .. ..$ hero_id    : int 104
+##   ..$ :List of 3
+##   .. ..$ account_id : int 95769976
+##   .. ..$ player_slot: int 4
+##   .. ..$ hero_id    : int 63
+##   ..$ :List of 3
+##   .. ..$ account_id : num 4.29e+09
+##   .. ..$ player_slot: int 128
+##   .. ..$ hero_id    : int 111
+##   ..$ :List of 3
+##   .. ..$ account_id : int 113687258
+##   .. ..$ player_slot: int 129
+##   .. ..$ hero_id    : int 14
+##   ..$ :List of 3
+##   .. ..$ account_id : int 180500018
+##   .. ..$ player_slot: int 130
+##   .. ..$ hero_id    : int 90
+##   ..$ :List of 3
+##   .. ..$ account_id : int 152337573
+##   .. ..$ player_slot: int 131
+##   .. ..$ hero_id    : int 19
+##   ..$ :List of 3
+##   .. ..$ account_id : int 216524070
+##   .. ..$ player_slot: int 132
+##   .. ..$ hero_id    : int 1</code></pre>
+</div>
+<div id="get_match_history_by_sequence_num" class="section level3">
+<h3>get_match_history_by_sequence_num</h3>
+<p><code>get_match_history_by_sequence_num</code> provides information about matches ordered by a sequence number. The function can get <code>start_at_match_seq_num</code> and <code>matches_requested</code> as arguments but both are optional. The function returns a list called matches. Each match follows exactly the same structure as the match retrieved from <code>get_match_details</code>.<br />
+Please see that function for the exact details.</p>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetMatchHistoryBySequenceNum">GetMatchHistoryBySequenceNum</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#get 1 match (out of 2) - match_seq_nums are 250 and 251 </span>
+<span class="kw">str</span>(<span class="kw">get_match_history_by_sequence_num</span>(<span class="dt">matches_requested =</span> <span class="dv">2</span>, 
+                                      <span class="dt">start_at_match_seq_num =</span> <span class="dv">250</span>)$content$matches[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## List of 23
+##  $ players                :List of 10
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 0
+##   .. ..$ hero_id            : int 7
+##   .. ..$ item_0             : int 73
+##   .. ..$ item_1             : int 180
+##   .. ..$ item_2             : int 1
+##   .. ..$ item_3             : int 73
+##   .. ..$ item_4             : int 16
+##   .. ..$ item_5             : int 162
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 7
+##   .. ..$ deaths             : int 17
+##   .. ..$ assists            : int 10
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 90
+##   .. ..$ denies             : int 7
+##   .. ..$ gold_per_min       : int 244
+##   .. ..$ xp_per_min         : int 453
+##   .. ..$ level              : int 19
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 1158
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : int 72557050
+##   .. ..$ player_slot        : int 1
+##   .. ..$ hero_id            : int 2
+##   .. ..$ item_0             : int 63
+##   .. ..$ item_1             : int 125
+##   .. ..$ item_2             : int 44
+##   .. ..$ item_3             : int 39
+##   .. ..$ item_4             : int 26
+##   .. ..$ item_5             : int 16
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 6
+##   .. ..$ deaths             : int 17
+##   .. ..$ assists            : int 6
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 34
+##   .. ..$ denies             : int 0
+##   .. ..$ gold_per_min       : int 193
+##   .. ..$ xp_per_min         : int 327
+##   .. ..$ level              : int 16
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 1284
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 2
+##   .. ..$ hero_id            : int 8
+##   .. ..$ item_0             : int 11
+##   .. ..$ item_1             : int 164
+##   .. ..$ item_2             : int 5
+##   .. ..$ item_3             : int 63
+##   .. ..$ item_4             : int 0
+##   .. ..$ item_5             : int 3
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 5
+##   .. ..$ deaths             : int 13
+##   .. ..$ assists            : int 6
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 64
+##   .. ..$ denies             : int 0
+##   .. ..$ gold_per_min       : int 219
+##   .. ..$ xp_per_min         : int 418
+##   .. ..$ level              : int 18
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 1463
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 3
+##   .. ..$ hero_id            : int 29
+##   .. ..$ item_0             : int 73
+##   .. ..$ item_1             : int 63
+##   .. ..$ item_2             : int 0
+##   .. ..$ item_3             : int 36
+##   .. ..$ item_4             : int 0
+##   .. ..$ item_5             : int 46
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 1
+##   .. ..$ deaths             : int 18
+##   .. ..$ assists            : int 10
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 35
+##   .. ..$ denies             : int 0
+##   .. ..$ gold_per_min       : int 154
+##   .. ..$ xp_per_min         : int 229
+##   .. ..$ level              : int 13
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 1579
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 4
+##   .. ..$ hero_id            : int 14
+##   .. ..$ item_0             : int 92
+##   .. ..$ item_1             : int 131
+##   .. ..$ item_2             : int 29
+##   .. ..$ item_3             : int 21
+##   .. ..$ item_4             : int 0
+##   .. ..$ item_5             : int 0
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 5
+##   .. ..$ deaths             : int 14
+##   .. ..$ assists            : int 6
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 49
+##   .. ..$ denies             : int 4
+##   .. ..$ gold_per_min       : int 184
+##   .. ..$ xp_per_min         : int 282
+##   .. ..$ level              : int 15
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 1647
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 128
+##   .. ..$ hero_id            : int 22
+##   .. ..$ item_0             : int 36
+##   .. ..$ item_1             : int 41
+##   .. ..$ item_2             : int 108
+##   .. ..$ item_3             : int 29
+##   .. ..$ item_4             : int 46
+##   .. ..$ item_5             : int 73
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 6
+##   .. ..$ deaths             : int 4
+##   .. ..$ assists            : int 40
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 34
+##   .. ..$ denies             : int 0
+##   .. ..$ gold_per_min       : int 261
+##   .. ..$ xp_per_min         : int 480
+##   .. ..$ level              : int 20
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 3972
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 129
+##   .. ..$ hero_id            : int 19
+##   .. ..$ item_0             : int 73
+##   .. ..$ item_1             : int 180
+##   .. ..$ item_2             : int 108
+##   .. ..$ item_3             : int 114
+##   .. ..$ item_4             : int 172
+##   .. ..$ item_5             : int 21
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 21
+##   .. ..$ deaths             : int 4
+##   .. ..$ assists            : int 39
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 90
+##   .. ..$ denies             : int 1
+##   .. ..$ gold_per_min       : int 437
+##   .. ..$ xp_per_min         : int 748
+##   .. ..$ level              : int 25
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 3783
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 130
+##   .. ..$ hero_id            : int 18
+##   .. ..$ item_0             : int 41
+##   .. ..$ item_1             : int 63
+##   .. ..$ item_2             : int 73
+##   .. ..$ item_3             : int 0
+##   .. ..$ item_4             : int 116
+##   .. ..$ item_5             : int 0
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 7
+##   .. ..$ deaths             : int 8
+##   .. ..$ assists            : int 29
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 53
+##   .. ..$ denies             : int 0
+##   .. ..$ gold_per_min       : int 264
+##   .. ..$ xp_per_min         : int 385
+##   .. ..$ level              : int 17
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 1450
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 131
+##   .. ..$ hero_id            : int 32
+##   .. ..$ item_0             : int 11
+##   .. ..$ item_1             : int 63
+##   .. ..$ item_2             : int 174
+##   .. ..$ item_3             : int 112
+##   .. ..$ item_4             : int 0
+##   .. ..$ item_5             : int 0
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 13
+##   .. ..$ deaths             : int 8
+##   .. ..$ assists            : int 12
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 57
+##   .. ..$ denies             : int 0
+##   .. ..$ gold_per_min       : int 314
+##   .. ..$ xp_per_min         : int 535
+##   .. ..$ level              : int 21
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 2380
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##   ..$ :List of 29
+##   .. ..$ account_id         : num 4.29e+09
+##   .. ..$ player_slot        : int 132
+##   .. ..$ hero_id            : int 47
+##   .. ..$ item_0             : int 63
+##   .. ..$ item_1             : int 125
+##   .. ..$ item_2             : int 114
+##   .. ..$ item_3             : int 108
+##   .. ..$ item_4             : int 0
+##   .. ..$ item_5             : int 0
+##   .. ..$ backpack_0         : int 0
+##   .. ..$ backpack_1         : int 0
+##   .. ..$ backpack_2         : int 0
+##   .. ..$ kills              : int 29
+##   .. ..$ deaths             : int 4
+##   .. ..$ assists            : int 26
+##   .. ..$ leaver_status      : int 0
+##   .. ..$ last_hits          : int 63
+##   .. ..$ denies             : int 0
+##   .. ..$ gold_per_min       : int 415
+##   .. ..$ xp_per_min         : int 657
+##   .. ..$ level              : int 23
+##   .. ..$ hero_damage        : int 0
+##   .. ..$ tower_damage       : int 0
+##   .. ..$ hero_healing       : int 0
+##   .. ..$ gold               : int 3480
+##   .. ..$ gold_spent         : int 0
+##   .. ..$ scaled_hero_damage : int 0
+##   .. ..$ scaled_tower_damage: int 0
+##   .. ..$ scaled_hero_healing: int 0
+##  $ radiant_win            : logi FALSE
+##  $ duration               : int 2619
+##  $ pre_game_duration      : int 0
+##  $ start_time             : int 1299266365
+##  $ match_id               : int 506
+##  $ match_seq_num          : int 250
+##  $ tower_status_radiant   : int 0
+##  $ tower_status_dire      : int 0
+##  $ barracks_status_radiant: int 0
+##  $ barracks_status_dire   : int 0
+##  $ cluster                : int 0
+##  $ first_blood_time       : int 0
+##  $ lobby_type             : int 0
+##  $ human_players          : int 10
+##  $ leagueid               : int 0
+##  $ positive_votes         : int 0
+##  $ negative_votes         : int 0
+##  $ game_mode              : int 0
+##  $ flags                  : int 0
+##  $ engine                 : int 0
+##  $ radiant_score          : int 0
+##  $ dire_score             : int 0</code></pre>
+</div>
+<div id="get_scheduled_league_games" class="section level3">
+<h3>get_scheduled_league_games</h3>
+<p><code>get_scheduled_league_games</code> returns a list of scheduled league games coming up. The function can get two optional arguments <code>date_min</code> and <code>date_max</code> specifying the time period in which to get the games. The function returns a list called games. Each game contains the following sections:</p>
+<ul>
+<li>league_id: The unique league id.</li>
+<li>game_id: A unique game id.</li>
+<li>teams: A list of the participating teams.</li>
+<li>starttime: Unix Timestamp of start time.</li>
+<li>comment: Description of game.</li>
+<li>final: Whether the game is a final or not.</li>
+</ul>
+<p>Steam API DOcumentation <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetScheduledLeagueGames">GetScheduledLeagueGames</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#no scheduled games at the time of writing</span>
+<span class="kw">str</span>(<span class="kw">get_scheduled_league_games</span>()$content)</code></pre></div>
+<pre><code>## List of 1
+##  $ result:List of 1
+##   ..$ games: list()</code></pre>
+</div>
+<div id="get_team_info_by_team_id" class="section level3">
+<h3>get_team_info_by_team_id</h3>
+<p><code>get_team_info_by_team_id</code> provides informationa about a team given a team id. The function can get two optional arguments. <code>start_at_team_id</code> specifies the team id to start returning results from and <code>teams_requested</code> specifies the number of teams to return. The function returns a teams list of which each element is a match. The following information for each match is provided:</p>
+<ul>
+<li>name: Team’s name.</li>
+<li>tag: The team’s tag.</li>
+<li>time_created: Unix timestamp of when the team was created.</li>
+<li>calibration_games_remaining: : Undocumented (possibly number of games until a ranking score can be dedided).</li>
+<li>logo: The UGC id for the team logo.</li>
+<li>logo_sponsor: The UGC id for the team sponsor logo.</li>
+<li>country_code: The team’s ISO 3166-1 country-code.</li>
+<li>url: Team’s url which they provided.</li>
+<li>games_played: Number of games played.</li>
+<li>player_*_account_id: Player’s account id. Will be as many columns as players.</li>
+<li>admin_account_id: Team’s admin id.</li>
+<li>league_id_*: Undocumented (Probably leagues they participated in). Will be as many columns as leagues.</li>
+<li>series_type: Series type.</li>
+<li>league_series_id: The league series id.</li>
+<li>league_game_id: The league game id.</li>
+<li>stage_name: The name of the stage.</li>
+<li>league_tier: League tier.</li>
+<li>scoreboard: A huge list containing scoreboard information.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetTeamInfoByTeamID">GetTeamInfoByTeamID</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#information about one team</span>
+<span class="kw">str</span>(<span class="kw">get_team_info_by_team_id</span>()$content$teams[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## List of 13
+##  $ name                       : chr &quot;Zenith&quot;
+##  $ tag                        : chr &quot;Zenith&quot;
+##  $ time_created               : int 1338330222
+##  $ calibration_games_remaining: int 3
+##  $ logo                       : num 7.12e+17
+##  $ logo_sponsor               : num 7.12e+17
+##  $ country_code               : chr &quot;sg&quot;
+##  $ url                        : chr &quot;www.dota2.com.cn&quot;
+##  $ games_played               : int 439
+##  $ player_0_account_id        : int 84772440
+##  $ player_1_account_id        : int 85417034
+##  $ player_2_account_id        : int 86011339
+##  $ admin_account_id           : int 86011339</code></pre>
+</div>
+<div id="get_tournament_player_stats" class="section level3">
+<h3>get_tournament_player_stats</h3>
+<p><code>get_tournament_player_stats</code> provides information about tournament players’ stats. It requires an <code>account_id</code> and optionally a <code>league_id</code> (only the international is supported i.e. 65006), a <code>hero_id</code> or a <code>time_frame</code> (this is not functional just yet according to the Steam API Documentation). The function returns a list that contains information about the matches the player played and information about global stats.</p>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetTournamentPlayerStats">GetTournamentPlayerStats</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#request seems to be successful but I couldn't find an account id that returned player stats</span>
+<span class="kw">str</span>(<span class="kw">get_tournament_player_stats</span>(<span class="dt">account_id =</span> <span class="dv">89550641</span>, <span class="dt">league_id =</span> <span class="dv">65006</span>)$content)</code></pre></div>
+<pre><code>## List of 1
+##  $ result:List of 2
+##   ..$ status : int 1
+##   ..$ matches: list()</code></pre>
+</div>
+<div id="get_top_live_game" class="section level3">
+<h3>get_top_live_game</h3>
+<p><code>get_top_live_game</code> returns the top live games by MMR. It requires a <code>partner</code> parameter (not optional) but the API documentation does not specify what it actually is. Values of 1 or 2 or 3 seem to be working. The function returns a <code>games_list</code> list which contains information about the top live games. The following categories are returns for each game. They are not documented on the API:</p>
+<ul>
+<li>activate_time</li>
+<li>deactivate_time</li>
+<li>server_steam_id</li>
+<li>lobby_id</li>
+<li>league_id</li>
+<li>lobby_type</li>
+<li>game_time</li>
+<li>delay</li>
+<li>spectators</li>
+<li>game_mode</li>
+<li>average_mmr</li>
+<li>sort_score</li>
+<li>last_update_time</li>
+<li>radiant_lead</li>
+<li>radiant_score</li>
+<li>dire_score</li>
+<li>players</li>
+<li>building_state</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetTopLiveGame">GetTopLiveGame</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#information about one team</span>
+<span class="kw">str</span>(<span class="kw">get_top_live_game</span>(<span class="dt">partner =</span> <span class="dv">1</span>)$content$game_list[[<span class="dv">1</span>]])</code></pre></div>
+<pre><code>## List of 18
+##  $ activate_time   : int 1485470720
+##  $ deactivate_time : int 0
+##  $ server_steam_id : chr &quot;90106498967296007&quot;
+##  $ lobby_id        : chr &quot;24922037570385388&quot;
+##  $ league_id       : int 0
+##  $ lobby_type      : int 7
+##  $ game_time       : int 1475
+##  $ delay           : int 120
+##  $ spectators      : int 81
+##  $ game_mode       : int 3
+##  $ average_mmr     : int 5250
+##  $ sort_score      : int 5831
+##  $ last_update_time: int 1485471744
+##  $ radiant_lead    : int -2187
+##  $ radiant_score   : int 18
+##  $ dire_score      : int 17
+##  $ players         :List of 10
+##   ..$ :List of 2
+##   .. ..$ account_id: int 165917622
+##   .. ..$ hero_id   : int 28
+##   ..$ :List of 2
+##   .. ..$ account_id: int 238150833
+##   .. ..$ hero_id   : int 17
+##   ..$ :List of 2
+##   .. ..$ account_id: int 336071675
+##   .. ..$ hero_id   : int 69
+##   ..$ :List of 2
+##   .. ..$ account_id: int 152844421
+##   .. ..$ hero_id   : int 48
+##   ..$ :List of 2
+##   .. ..$ account_id: int 373170091
+##   .. ..$ hero_id   : int 79
+##   ..$ :List of 2
+##   .. ..$ account_id: int 158574596
+##   .. ..$ hero_id   : int 112
+##   ..$ :List of 2
+##   .. ..$ account_id: int 213977905
+##   .. ..$ hero_id   : int 108
+##   ..$ :List of 2
+##   .. ..$ account_id: int 343558379
+##   .. ..$ hero_id   : int 6
+##   ..$ :List of 2
+##   .. ..$ account_id: int 134158983
+##   .. ..$ hero_id   : int 46
+##   ..$ :List of 2
+##   .. ..$ account_id: int 139759648
+##   .. ..$ hero_id   : int 14
+##  $ building_state  : int 9568466</code></pre>
+</div>
+<div id="get_game_items" class="section level3">
+<h3>get_game_items</h3>
+<p><code>get_game_items</code> returns information about Dota’s items. The function does not require any extra arguments and outputs a data.frame with the following columns:</p>
+<ul>
+<li>id: Item’s ID.</li>
+<li>name: Item’s tokenised name.</li>
+<li>cost: Item’s in-game cost.</li>
+<li>secret_shop: Boolean. Whether it is sold in the secret shop.</li>
+<li>side_shop: Boolean. Whether it is sold in the side shop.</li>
+<li>recipe: Boolean. Whether it is a recipe.</li>
+<li>localized_name: Localised name of item.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetGameItems">GetGameItems</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">get_game_items</span>()$content)</code></pre></div>
+<pre><code>## 'data.frame':    259 obs. of  7 variables:
+##  $ id            : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ name          : chr  &quot;item_blink&quot; &quot;item_blades_of_attack&quot; &quot;item_broadsword&quot; &quot;item_chainmail&quot; ...
+##  $ cost          : int  2250 420 1200 550 1400 900 1500 1600 1400 875 ...
+##  $ secret_shop   : int  0 0 0 0 0 0 0 0 1 0 ...
+##  $ side_shop     : int  1 1 1 1 0 1 0 0 0 1 ...
+##  $ recipe        : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ localized_name: chr  &quot;Blink Dagger&quot; &quot;Blades of Attack&quot; &quot;Broadsword&quot; &quot;Chainmail&quot; ...</code></pre>
+</div>
+<div id="get_heroes" class="section level3">
+<h3>get_heroes</h3>
+<p><code>get_heroes</code> returns information about Dota’s heroes. The function does not require any extra arguments and outputs a data.frame with the following columns:</p>
+<ul>
+<li>name: Hero’s name.</li>
+<li>id: Hero’s ID.</li>
+<li>localized_name: Name of the hero in-game.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetHeroes">GetHeroes</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">get_heroes</span>()$content)</code></pre></div>
+<pre><code>## 'data.frame':    113 obs. of  3 variables:
+##  $ name          : chr  &quot;npc_dota_hero_antimage&quot; &quot;npc_dota_hero_axe&quot; &quot;npc_dota_hero_bane&quot; &quot;npc_dota_hero_bloodseeker&quot; ...
+##  $ id            : int  1 2 3 4 5 6 7 8 9 11 ...
+##  $ localized_name: chr  &quot;Anti-Mage&quot; &quot;Axe&quot; &quot;Bane&quot; &quot;Bloodseeker&quot; ...</code></pre>
+</div>
+<div id="get_rarities" class="section level3">
+<h3>get_rarities</h3>
+<p><code>get_rarities</code> returns information about Dota’s item rarities. The function does not require any extra arguments and outputs a data.frame with the following columns:</p>
+<ul>
+<li>name: Internal rarity name.</li>
+<li>id: Rarity’s ID.</li>
+<li>order: Logical order of rarities. From most common to most rare.</li>
+<li>color: Hexadecimal RGB color of the rarity’s name.</li>
+<li>localized_name: In-game rarity name.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetRarities">GetRarities</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_rarities</span>()$content</code></pre></div>
+<pre><code>##        name id order   color localized_name
+## 1    common  1     0 #b0c3d9         Common
+## 2  uncommon  2     1 #5e98d9       Uncommon
+## 3      rare  3     2 #4b69ff           Rare
+## 4  mythical  4     3 #8847ff       Mythical
+## 5 legendary  5     4 #d32ce6      Legendary
+## 6   ancient  6     5 #EB4B4B        Ancient
+## 7  immortal  7     6 #e4ae39       Immortal
+## 8    arcana  8     7 #ADE55C         Arcana</code></pre>
+</div>
+<div id="get_tournament_prize_pool" class="section level3">
+<h3>get_tournament_prize_pool</h3>
+<p><code>get_tournament_prize_pool</code> returns information about Dota’s tournament prizes. The function can take an optional <code>leagueid</code> argument (the league id to get the prize for) and outputs a data.frame with the following columns:</p>
+<ul>
+<li>prize_pool: The prize pool.</li>
+<li>league_id: The league’s id.</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetTournamentPrizePool">GetTournamentPrizePool</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(<span class="kw">get_tournament_prize_pool</span>()$content)</code></pre></div>
+<pre><code>## 'data.frame':    1 obs. of  2 variables:
+##  $ prize_pool: int 2874380
+##  $ league_id : int 65006</code></pre>
+</div>
+<div id="get_event_stats_for_account" class="section level3">
+<h3>get_event_stats_for_account</h3>
+<p><code>get_event_stats_for_account</code> returns an account’s event stats. The function takes two arguments. An <code>eventid</code> argument (the league id) and an <code>accountid</code> argument (account id to get stats for). A list will be returned but the contents of it are not documented in the Steam API Documentation. The function returns a list that contains:</p>
+<ul>
+<li>event_points</li>
+<li>actions</li>
+</ul>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetEventStatsForAccount">GetEventStatsForAccount</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_event_stats_for_account</span>(<span class="dt">eventid =</span> <span class="dv">65006</span>, <span class="dt">accountid =</span> <span class="dv">89550641</span>)$content</code></pre></div>
+<pre><code>## $result
+## $result$event_points
+## [1] 0
+## 
+## $result$actions
+## named list()</code></pre>
+</div>
+<div id="get_item_icon_path" class="section level3">
+<h3>get_item_icon_path</h3>
+<p><code>get_item_icon_path</code> returns the icon path for an item. It requires an <code>iconname</code> (The item icon name) and an <code>icontype</code> (the type of image - 0 is normal, 1 is large and 3 is ingame) argument. There is no documentation regarding this method in the Steam API Documentation at the time of writing.</p>
+<p>Steam API Documentation: <a href="https://wiki.teamfortress.com/wiki/WebAPI/GetItemIconPath">GetItemIconPath</a></p>
+</div>
+<div id="bugs-features" class="section level3">
+<h3>BUGS / FEATURES</h3>
+<p>If you would like to make any recommendations or give feedback or report a bug please visit the development site on <a href="https://github.com/LyzandeR/RDota2">github</a>.</p>
+<p>You made it to the end of the documentation! Thanks for reading!</p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
