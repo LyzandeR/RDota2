@@ -12,7 +12,7 @@
 
 <meta name="author" content="Theo Boutaris" />
 
-<meta name="date" content="2017-01-26" />
+<meta name="date" content="2017-01-29" />
 
 <title>RDota2</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">RDota2</h1>
 <h4 class="author"><em>Theo Boutaris</em></h4>
-<h4 class="date"><em>2017-01-26</em></h4>
+<h4 class="date"><em>2017-01-29</em></h4>
 
 
 
@@ -549,53 +549,53 @@ match_details &lt;-<span class="st"> </span><span class="kw">get_match_history</
 <span class="co">#information about the first match</span>
 <span class="kw">str</span>(match_details[[<span class="dv">1</span>]][[<span class="dv">1</span>]])</code></pre></div>
 <pre><code>## List of 7
-##  $ match_id       : num 2.94e+09
-##  $ match_seq_num  : num 2.57e+09
-##  $ start_time     : int 1485471315
+##  $ match_id       : num 2.95e+09
+##  $ match_seq_num  : num 2.58e+09
+##  $ start_time     : int 1485697844
 ##  $ lobby_type     : int 0
 ##  $ radiant_team_id: int 0
 ##  $ dire_team_id   : int 0
 ##  $ players        :List of 10
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 83518920
+##   .. ..$ account_id : int 165932687
 ##   .. ..$ player_slot: int 0
-##   .. ..$ hero_id    : int 26
+##   .. ..$ hero_id    : int 73
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 89351823
+##   .. ..$ account_id : int 167388339
 ##   .. ..$ player_slot: int 1
-##   .. ..$ hero_id    : int 3
+##   .. ..$ hero_id    : int 89
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 102233244
+##   .. ..$ account_id : int 338570299
 ##   .. ..$ player_slot: int 2
-##   .. ..$ hero_id    : int 98
+##   .. ..$ hero_id    : int 41
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 124867826
+##   .. ..$ account_id : int 161182201
 ##   .. ..$ player_slot: int 3
-##   .. ..$ hero_id    : int 104
+##   .. ..$ hero_id    : int 27
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 95769976
+##   .. ..$ account_id : int 125271682
 ##   .. ..$ player_slot: int 4
-##   .. ..$ hero_id    : int 63
+##   .. ..$ hero_id    : int 62
 ##   ..$ :List of 3
-##   .. ..$ account_id : num 4.29e+09
+##   .. ..$ account_id : int 135709238
 ##   .. ..$ player_slot: int 128
-##   .. ..$ hero_id    : int 111
+##   .. ..$ hero_id    : int 102
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 113687258
+##   .. ..$ account_id : int 132893085
 ##   .. ..$ player_slot: int 129
-##   .. ..$ hero_id    : int 14
+##   .. ..$ hero_id    : int 10
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 180500018
+##   .. ..$ account_id : int 204899241
 ##   .. ..$ player_slot: int 130
-##   .. ..$ hero_id    : int 90
+##   .. ..$ hero_id    : int 81
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 152337573
+##   .. ..$ account_id : int 147449369
 ##   .. ..$ player_slot: int 131
-##   .. ..$ hero_id    : int 19
+##   .. ..$ hero_id    : int 1
 ##   ..$ :List of 3
-##   .. ..$ account_id : int 216524070
+##   .. ..$ account_id : int 103817687
 ##   .. ..$ player_slot: int 132
-##   .. ..$ hero_id    : int 1</code></pre>
+##   .. ..$ hero_id    : int 112</code></pre>
 </div>
 <div id="get_match_history_by_sequence_num" class="section level3">
 <h3>get_match_history_by_sequence_num</h3>
@@ -1027,54 +1027,54 @@ Please see that function for the exact details.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#information about one team</span>
 <span class="kw">str</span>(<span class="kw">get_top_live_game</span>(<span class="dt">partner =</span> <span class="dv">1</span>)$content$game_list[[<span class="dv">1</span>]])</code></pre></div>
 <pre><code>## List of 18
-##  $ activate_time   : int 1485470720
+##  $ activate_time   : int 1485696384
 ##  $ deactivate_time : int 0
-##  $ server_steam_id : chr &quot;90106498967296007&quot;
-##  $ lobby_id        : chr &quot;24922037570385388&quot;
+##  $ server_steam_id : chr &quot;90106562785046533&quot;
+##  $ lobby_id        : chr &quot;24923666001412268&quot;
 ##  $ league_id       : int 0
-##  $ lobby_type      : int 7
-##  $ game_time       : int 1475
+##  $ lobby_type      : int 0
+##  $ game_time       : int 1733
 ##  $ delay           : int 120
-##  $ spectators      : int 81
+##  $ spectators      : int 826
 ##  $ game_mode       : int 3
-##  $ average_mmr     : int 5250
-##  $ sort_score      : int 5831
-##  $ last_update_time: int 1485471744
-##  $ radiant_lead    : int -2187
-##  $ radiant_score   : int 18
-##  $ dire_score      : int 17
+##  $ average_mmr     : int 6847
+##  $ sort_score      : int 7941
+##  $ last_update_time: int 1485698304
+##  $ radiant_lead    : int -4675
+##  $ radiant_score   : int 21
+##  $ dire_score      : int 34
 ##  $ players         :List of 10
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 165917622
-##   .. ..$ hero_id   : int 28
+##   .. ..$ account_id: int 103729052
+##   .. ..$ hero_id   : int 26
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 238150833
-##   .. ..$ hero_id   : int 17
+##   .. ..$ account_id: int 51684352
+##   .. ..$ hero_id   : int 70
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 336071675
-##   .. ..$ hero_id   : int 69
+##   .. ..$ account_id: int 135384059
+##   .. ..$ hero_id   : int 62
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 152844421
-##   .. ..$ hero_id   : int 48
+##   .. ..$ account_id: int 135878232
+##   .. ..$ hero_id   : int 72
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 373170091
-##   .. ..$ hero_id   : int 79
+##   .. ..$ account_id: int 113051039
+##   .. ..$ hero_id   : int 2
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 158574596
-##   .. ..$ hero_id   : int 112
+##   .. ..$ account_id: int 278006984
+##   .. ..$ hero_id   : int 42
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 213977905
-##   .. ..$ hero_id   : int 108
+##   .. ..$ account_id: int 194710965
+##   .. ..$ hero_id   : int 106
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 343558379
-##   .. ..$ hero_id   : int 6
+##   .. ..$ account_id: int 182325064
+##   .. ..$ hero_id   : int 114
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 134158983
-##   .. ..$ hero_id   : int 46
+##   .. ..$ account_id: int 139876032
+##   .. ..$ hero_id   : int 85
 ##   ..$ :List of 2
-##   .. ..$ account_id: int 139759648
-##   .. ..$ hero_id   : int 14
-##  $ building_state  : int 9568466</code></pre>
+##   .. ..$ account_id: int 136624722
+##   .. ..$ hero_id   : int 5
+##  $ building_state  : int 5374162</code></pre>
 </div>
 <div id="get_game_items" class="section level3">
 <h3>get_game_items</h3>
