@@ -41,7 +41,7 @@ get_league_listing <- function(dota_id = 570, language = 'en', key = NULL) {
 
  #convert content to data.frame
  dota_result$content <-
-  do.call(rbind.data.frame, c(dota_result$content[[1]][[1]], stringsAsFactors = FALSE))
+  plyr::rbind.fill(lapply(dota_result$content[[1]][[1]], rbind.data.frame))
 
  #return
  dota_result
