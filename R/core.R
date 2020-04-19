@@ -60,9 +60,10 @@ get_response <- function(dota_id, dota_api_method, dota_api_category, api_versio
                        api_version)
 
  #get response
- resp <- httr::GET(request_url,
-                   query = args,
-                   ua)
+resp <- httrr::RETRY(verb = "GET",
+                     url = request_url,
+                     query = args,
+                     ua)
 
  #get url
  url <- strsplit(resp$url, '\\?')[[1]][1]
